@@ -1,0 +1,47 @@
+/* pages/list/list.wxss */
+
+page {
+    width: 100%;
+    height: 100%;
+}
+
+#qr_view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#qrcode {
+    background-color: #efefef;
+    margin: auto;
+}
+
+#qr_no {
+    text-align: center;
+    display: block;
+    line-height: 2;
+    font-weight: bold;
+}
+
+.tip {
+    height: 100%;
+}
+
+.tip>view {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+.tip>view:first-child {
+    align-items: flex-end;
+}
+.tip>view:last-child {
+    align-items: flex-start;
+}

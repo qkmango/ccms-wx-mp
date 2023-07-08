@@ -1,0 +1,14 @@
+<!-- pages/account/account.wxml -->
+<!-- 登陆 -->
+<view wx:if="{{ !userInfo }}" class="toLogin" style="background-image: url('../../image/account_background.svg');">
+    <button class="toLogin_btn" type="primary" bindtap="toLoginPage">登陆</button>
+</view>
+<!-- 账户信息 -->
+<view wx:else class="logined" style="background-image: url('../../image/account_background.svg');">
+    <image src="{{ userInfo.avatarUrl }}" class="avatar" />
+    <text class="nickName">{{ userInfo.nickName }}</text>
+    <button class="settings" bindtap='toSettingsPage' style="background-image: url('../../image/icon/settings.png');"></button>
+</view>
+<view wx:if="{{ userInfo }}">
+    <view>账户信息</view>
+</view>

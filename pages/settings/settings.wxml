@@ -1,0 +1,4 @@
+<!-- pages/settings/settings.wxml -->
+<view class="logout">
+    <button bindtap="logout">退出</button>
+</view>

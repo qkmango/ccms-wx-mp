@@ -1,0 +1,44 @@
+/* pages/account/account.wxss */
+
+/* @import '/assets/weui/weui.wxss'; */
+
+
+.logined,.toLogin {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    height: 400rpx;
+    padding: 20rpx;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+}
+
+.avatar {
+    width: 128rpx;
+    height: 128rpx;
+    border-radius: 50%;
+}
+
+.nickName {
+    margin-left: 20rpx;
+    font-weight: bold;
+}
+
+.settings {
+    width: 50rpx !important;
+    height: 50rpx !important;
+    padding: 0;
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50rpx;
+    /* background-color: red; */
+}

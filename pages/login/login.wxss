@@ -1,0 +1,13 @@
+/* pages/login/login.wxss */
+
+@import '/assets/weui/weui.wxss';
+
+.toLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    height: 400rpx;
+    padding: 20rpx;
+}

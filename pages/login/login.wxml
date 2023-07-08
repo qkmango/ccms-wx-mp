@@ -1,0 +1,26 @@
+<!-- pages/login/login.wxml -->
+<view wx:if="{{ !userInfo }}" class="noLogin">
+    <form bindsubmit="loginSubmit" class="weui-form">
+        <view class="weui-cells weui-cells_form">
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">账号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input name="id" class="weui-input" value="1" placeholder="请输入账号" />
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">密码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input name="password" class="weui-input" value="1" type="password" placeholder="请输入密码" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-btn-area">
+            <button  type="primary" formType="submit">登录</button>
+        </view>
+    </form>
+</view>
