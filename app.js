@@ -15,7 +15,7 @@ App({
     },
     globalData: {
         userInfo: null,
-        host: 'http://localhost',
+        host: 'http://192.168.1.4',
         JSESSIONID: null,
     },
 });
