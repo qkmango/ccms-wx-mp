@@ -20,7 +20,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        if (wx.getStorageSync('JSESSIONID')) {
+        if (getApp().account()) {
             this.setData({
                 logined: true,
             });
@@ -87,7 +87,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        if (wx.getStorageSync('JSESSIONID')) {
+        if (getApp().account()) {
             this.drawQRCode();
             this.setData({
                 logined: true,

@@ -1,21 +1,23 @@
 /* pages/account/account.wxss */
+/* @import '/assets/weui/weui'; */
+/* @import '/assets/color'; */
 
-@import '/assets/weui/weui';
-
-.logined,
-.toLogin {
+.header {
     position: relative;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     background-size: cover;
     background-position: center;
     height: 400rpx;
-    /* padding: 20rpx; */
     width: 100%;
     border-radius: 0 0 20rpx 20rpx;
     background-color: blanchedalmond;
     overflow: hidden;
+}
+
+/* 未登录的居中布局 */
+.nologin {
+    display: contents;
 }
 
 .background_image {
@@ -23,12 +25,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-}
-
-form {
-    width: 100%;
-    height: 100%;
+    filter: blur(3px);
 }
 
 .avatar {
@@ -37,12 +34,16 @@ form {
     border-radius: 50%;
     position: relative;
     margin-left: 20rpx;
+    vertical-align: middle;
 }
 
 .nickName {
     margin-left: 20rpx;
     font-weight: bold;
     position: relative;
+    font-size: 50rpx;
+    color: #00965e;
+    vertical-align: middle;
 }
 
 .settings {
@@ -63,6 +64,91 @@ form {
     height: 100%;
 }
 
-.weui-cell > .weui-cell__hd {
-    width: 130rpx;
+.card_info_view {
+    border-radius: 20rpx;
+    margin: 20rpx;
+    overflow: hidden;
+    box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.text {
+    vertical-align: middle;
+    color: #00965e;
+}
+
+.text-right {
+    float: right;
+}
+
+.info-title {
+    font-weight: bold;
+    margin: 20rpx 0;
+}
+
+.icon {
+    width: 50rpx;
+    height: 50rpx;
+    margin-right: 20rpx;
+    vertical-align: middle;
+}
+
+.info_item_view {
+    padding: 20rpx;
+}
+
+.info_view_header {
+    background-color: rgba(0, 150, 94, 0.1);
+    padding: 20rpx;
+}
+
+.info_item {
+    background-color: #f5f5f5;
+    display: inline-block;
+    border-radius: 20rpx;
+    padding: 10rpx 20rpx;
+    text-align: center;
+    margin: auto 10rpx;
+    vertical-align: middle;
+}
+
+.money {
+    font-size: 50rpx;
+    font-weight: bold;
+    line-height: 50rpx;
+    display: block;
+}
+
+.info_item_value {
+    font-weight: bold;
+    line-height: 50rpx;
+    display: block;
+    font-size: 26rpx;
+}
+
+.info_item_title {
+    color: #696969;
+    font-size: 26rpx;
+}
+
+.dept_value {
+    text-align: left;
+    line-height: normal;
+}
+.dept_value > text:not(:first-child)::before {
+    content: ' > ';
+    vertical-align: middle;
+}
+
+/* 状态字体颜色 */
+.normal {
+    color: #00965e;
+}
+
+.canceled {
+    color: #ff5722;
+}
+
+.frozen,
+.loss {
+    color: #ffb800;
 }

@@ -6,6 +6,7 @@ Page({
     data: {},
 
     loginSubmit: function (e) {
+        console.log('loginSubmit');
         wx.showLoading({
             title: '登陆中...',
         });
@@ -18,24 +19,21 @@ Page({
             data: {
                 id,
                 password,
-                role: 'user',
             },
             success: (res) => {
                 if (res.data.success) {
-                    const JSESSIONID = res.header['Set-Cookie'].split(';')[0];
-                    //将JSESSIONID存入缓存
-                    wx.setStorageSync('JSESSIONID', JSESSIONID);
-                    // getApp().globalData.userInfo = res.data.data;
-                    getApp().globalData.JSESSIONID = JSESSIONID;
+                    // 登陆成功
+                    // 保存token
+                    getApp().token(res.data.data);
 
                     wx.showToast({
                         title: '登录成功',
                         icon: 'success',
                         duration: 2000,
                     });
-                    wx.switchTab({
-                        url: this.data.switchTab,
-                    });
+
+                    // 获取用户详细信息
+                    this.getAccountDetail();
                 } else {
                     wx.showToast({
                         title: '用户名或密码错误',
@@ -44,6 +42,50 @@ Page({
                     });
                 }
             },
+        });
+    },
+
+    getAccountDetail: function () {
+
+        getApp().getAccountDetail({
+            before: () => {
+                wx.showLoading({
+                    title: '获取用户信息...',
+                });
+            },
+            success: (res) => {
+                if (res.data.success) {
+                    // 获取用户信息成功
+                    // 保存用户详细信息
+                    res.data.data.avatarUrl = '/image/avatar.jpg';
+
+                    if (res.data.data.account.role === 'user') {
+                        getApp().account(res.data.data);
+                        wx.showToast({
+                            title: '获取用户信息成功',
+                            icon: 'success',
+                            duration: 2000,
+                            complete: () => {
+                                wx.switchTab({
+                                    url: this.data.switchTab,
+                                });
+                            },
+                        });
+                    } else {
+                        wx.showToast({
+                            title: '该账号不是用户',
+                            icon: 'error',
+                            duration: 2000,
+                        });
+                    }
+                } else {
+                    wx.showToast({
+                        title: '获取用户信息失败',
+                        icon: 'error',
+                        duration: 2000,
+                    });
+                }
+            }
         });
     },
 

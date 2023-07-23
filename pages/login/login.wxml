@@ -7,7 +7,7 @@
                     <view class="weui-label">账号</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input name="id" class="weui-input" value="1" placeholder="请输入账号" />
+                    <input name="id" class="weui-input" value="8" placeholder="请输入账号" />
                 </view>
             </view>
             <view class="weui-cell">

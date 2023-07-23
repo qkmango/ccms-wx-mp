@@ -20,17 +20,20 @@
             {
                 "pagePath": "pages/index/index",
                 "text": "主页",
-                "iconPath": "image/nav/home.png"
+                "iconPath": "image/nav/home.png",
+                "selectedColor": "#00965e"
             },
             {
                 "pagePath": "pages/pay/pay",
                 "text": "支付",
-                "iconPath": "image/nav/pay.png"
+                "iconPath": "image/nav/pay.png",
+                "selectedColor": "#00965e"
             },
             {
                 "pagePath": "pages/account/account",
                 "text": "账户",
-                "iconPath": "image/nav/user.png"
+                "iconPath": "image/nav/user.png",
+                "selectedColor": "#00965e"
             }
         ]
     },

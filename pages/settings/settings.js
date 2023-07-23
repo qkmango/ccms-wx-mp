@@ -7,39 +7,17 @@ Page({
 
     logout: function () {
         const that = this;
-        const session = wx.getStorageSync('JSESSIONID');
-        if (session == null) {
-            return;
-        }
+        getApp().token(null);
+        getApp().account(null);
 
-        wx.request({
-            url: `${getApp().globalData.host}/account/logout.do`,
-            header: {
-                'content-type': 'application/json',
-                cookie: session,
-            },
-            method: 'POST',
-            success: (res) => {
-                if (res.data.success) {
-                    wx.removeStorageSync('JSESSIONID');
-                    getApp().globalData.JSESSIONID = null;
-                    wx.showToast({
-                        title: '退出成功',
-                        icon: 'success',
-                        duration: 2000,
-                    });
-                    // 退出成功后，回到首页
-                    wx.switchTab({
-                        url: '/pages/account/account',
-                    });
-                } else {
-                    wx.showToast({
-                        title: '退出失败',
-                        icon: 'error',
-                        duration: 2000,
-                    });
-                }
-            },
+        wx.showToast({
+            title: '退出成功',
+            icon: 'success',
+            duration: 2000,
+        });
+        // 退出成功后，回到首页
+        wx.switchTab({
+            url: '/pages/account/account',
         });
     },
 
