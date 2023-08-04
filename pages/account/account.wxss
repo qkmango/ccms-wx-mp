@@ -1,6 +1,9 @@
-/* pages/account/account.wxss */
-/* @import '/assets/weui/weui'; */
-/* @import '/assets/color'; */
+@import '/assets/iconfont/iconfont.wxss';
+
+page {
+    height: 100%;
+    background-color: #f3f9f7;
+}
 
 .header {
     position: relative;
@@ -11,7 +14,6 @@
     height: 400rpx;
     width: 100%;
     border-radius: 0 0 20rpx 20rpx;
-    background-color: blanchedalmond;
     overflow: hidden;
 }
 
@@ -42,38 +44,36 @@
     font-weight: bold;
     position: relative;
     font-size: 50rpx;
-    color: #00965e;
+    color: #09b060;
     vertical-align: middle;
 }
 
 .settings {
-    width: 50rpx !important;
-    height: 50rpx !important;
+    width: auto !important;
+    height: auto !important;
     padding: 0;
     position: fixed;
     top: 20rpx;
-    right: 20rpx;
+    right: 36rpx;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50rpx;
 }
-
-.settings > image {
-    width: 100%;
-    height: 100%;
+.settings>.iconfont {
+    font-size: 48rpx;
 }
 
 .card_info_view {
     border-radius: 20rpx;
-    margin: 20rpx;
+    margin: 28rpx;
     overflow: hidden;
     box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
 }
 
 .text {
     vertical-align: middle;
-    color: #00965e;
+    color: #09b060;
 }
 
 .text-right {
@@ -86,14 +86,15 @@
 }
 
 .icon {
-    width: 50rpx;
-    height: 50rpx;
-    margin-right: 20rpx;
+    margin-right: 18rpx;
     vertical-align: middle;
+    color: #09b060;
+    font-weight: bold;
 }
 
 .info_item_view {
     padding: 20rpx;
+    background-color: #fff;
 }
 
 .info_view_header {
@@ -102,7 +103,7 @@
 }
 
 .info_item {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
     display: inline-block;
     border-radius: 20rpx;
     padding: 10rpx 20rpx;
@@ -141,7 +142,7 @@
 
 /* 状态字体颜色 */
 .normal {
-    color: #00965e;
+    color: #09b060;
 }
 
 .canceled {

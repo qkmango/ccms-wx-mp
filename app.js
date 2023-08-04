@@ -92,28 +92,28 @@ App({
         return null;
     },
 
-    getAccountDetail: function ({ before, success,fail, _this }) {
+    getAccountDetail: function ({ before, success, fail, _this }) {
         if (before) {
             before();
         }
 
         wx.request({
-            url: `${getApp().globalData.host}/account/one/current-account-detail.do`,
+            url: `${getApp().globalData.host}/api/account/one/current-account-detail.do`,
             header: {
                 'content-type': 'application/x-www-form-urlencoded',
                 Authorization: this.token(),
             },
-            timeout:3000,
+            timeout: 3000,
             success: (res) => {
-                if(success) {
+                if (success) {
                     success(res);
                 }
             },
             fail: (res) => {
-                if(fail) {
+                if (fail) {
                     fail(res);
                 }
-            }
+            },
         });
     },
 });

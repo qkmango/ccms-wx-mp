@@ -68,11 +68,11 @@ Page({
 
     // 判断是否登陆
     assertLogin: function () {
-        let account = getApp().account();
-        if (account) {
-            this.setData({ account });
+        let detail = getApp().account();
+        if (detail) {
+            this.setData({ detail });
         } else {
-            this.setData({ account: null });
+            this.setData({ detail: null });
         }
     },
 

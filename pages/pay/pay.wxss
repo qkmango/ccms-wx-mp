@@ -1,7 +1,5 @@
 /* pages/list/list.wxss */
-
-page {
-    width: 100%;
+.pay-view {
     height: 100%;
 }
 

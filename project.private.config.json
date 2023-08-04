@@ -11,7 +11,7 @@
             "list": [
                 {
                     "name": "",
-                    "pathName": "pages/account/account",
+                    "pathName": "pages/pay/pay",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

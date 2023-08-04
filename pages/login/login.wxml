@@ -1,26 +1,16 @@
 <!-- pages/login/login.wxml -->
-<view wx:if="{{ !userInfo }}" class="noLogin">
-    <form bindsubmit="loginSubmit" class="weui-form">
-        <view class="weui-cells weui-cells_form">
-            <view class="weui-cell">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">账号</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input name="id" class="weui-input" value="8" placeholder="请输入账号" />
-                </view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">密码</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input name="password" class="weui-input" value="1" type="password" placeholder="请输入密码" />
-                </view>
-            </view>
+<view wx:if="{{ !userInfo }}" class="from-view">
+    <image src="/image/login-bg.svg" class="bg-image" />
+    <form bindsubmit="loginSubmit">
+        <view class="logo-view">
+            <image src="/image/logo.svg" />
         </view>
-        <view class="weui-btn-area">
-            <button  type="primary" formType="submit">登录</button>
+        <view class="input-view">
+            <input type="text" name="id" placeholder="账户ID" value="8" />
+            <input type="password" name="password" placeholder="密码" value="1" />
+        </view>
+        <view class="button-view">
+            <button class="login-btn button" type="primary" formType="submit">登录</button>
         </view>
     </form>
 </view>

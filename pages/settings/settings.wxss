@@ -1,12 +1,12 @@
 /* pages/settings/settings.wxss */
 
-.logout {
-    position: absolute;
-    bottom: 100rpx;
-    width: 100%;
-    height: 100rpx;
-    color: white;
-    font-size: 40rpx;
-    text-align: center;
-    line-height: 100rpx;
+.logout-view {
+    /* position: absolute; */
+    /* bottom: 100rpx; */
+    /* width: 100%; */
+    /* height: 100rpx; */
+    /* color: white; */
+    /* font-size: 40rpx; */
+    /* text-align: center; */
+    /* line-height: 100rpx; */
 }

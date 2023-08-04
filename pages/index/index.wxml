@@ -1,4 +1,4 @@
 <view class="logo">
-  <text>校园一卡通</text>
+  <!-- <text>校园一卡通</text> -->
   <image src='/image/logo.svg' />
 </view>

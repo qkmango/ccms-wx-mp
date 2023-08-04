@@ -2,40 +2,38 @@
     <image class="background_image" src="/image/background_image.svg" mode="aspectFill" />
 
     <!-- 未登录 -->
-    <view wx:if="{{ !account }}" class="nologin">
-        <button class="toLogin_btn" type="primary" bindtap="toLoginPage">登陆</button>
+    <view wx:if="{{ !detail }}" class="nologin">
+        <button class="to-login-btn dull-polish-btn" type="default" bindtap="toLoginPage">登陆</button>
     </view>
     
     <!-- 已登录 -->
     <!-- 账户信息 -->
     <view wx:else>
-        <image src="{{ account.avatarUrl }}" class="avatar" />
-        <text class="nickName">{{ account.user.name }}</text><br />
-        <button class="settings" bindtap='toSettingsPage'>
-            <image src="/image/icon/settings.png" />
-        </button>
+        <image src="{{ detail.avatarUrl }}" class="avatar" />
+        <text class="nickName">{{ detail.user.name }}</text><br />
+        <button class="settings" bindtap='toSettingsPage'><text class="iconfont icon-shezhi"></text></button>
     </view>
 </view>
 
-<view wx:if="{{ account }}" class="info_view">
+<view wx:if="{{ detail }}" class="info_view">
     <!-- 卡片展示用户信息， -->
     <view class="card_info_view">
         <view class="info_view_header">
-            <image src="/image/icon/card.svg" class="icon"></image>
+            <text class="icon iconfont icon-yinhangka"></text>
             <text class="text info-title">校园卡</text>
-            <text class="text text-right">{{account.card.id}}</text>
+            <text class="text text-right">{{detail.card.id}}</text>
         </view>
         <view class="info_item_view">
             <view class="info_item">
                 <text class="text info_item_title">余额</text>
-                <text class="text money info_item_value">{{account.card.balance}}</text>
+                <text class="text money info_item_value">{{detail.card.balance}}</text>
             </view>
             <view class="info_item">
                 <text class="text info_item_title">状态</text>
-                <text class="text info_item_value {{account.card.state}}">{{
-                    account.card.state==='normal'? '正常':
-                    account.card.state==='canceled'? '注销':
-                    account.card.state==='loss'? '挂失':"未知"
+                <text class="text info_item_value {{detail.card.state}}">{{
+                    detail.card.state==='normal'? '正常':
+                    detail.card.state==='canceled'? '注销':
+                    detail.card.state==='loss'? '挂失':"未知"
                     }}</text>
             </view>
         </view>
@@ -43,22 +41,22 @@
 
     <view class="card_info_view">
         <view class="info_view_header">
-            <image src="/image/icon/user.svg" class="icon"></image>
+            <text class="icon iconfont icon-shandian"></text>
             <text class="text info-title">账户信息</text>
-            <text class="text text-right">{{account.account.id}}</text>
+            <text class="text text-right">{{detail.account.id}}</text>
         </view>
         <view class="info_item_view">
             <view class="info_item">
                 <text class="text info_item_title">角色</text>
                 <!-- 这里只判断是否为用户 -->
-                <text class="text info_item_value">{{ account.account.role==='user'? '用户':'未知'}}</text>
+                <text class="text info_item_value">{{ detail.account.role==='user'? '用户':'未知'}}</text>
             </view>
             <view class="info_item">
                 <text class="text info_item_title">状态</text>
-                <text class="text info_item_value {{account.card.state}}">{{
-                    account.card.state==='normal'? '正常':
-                    account.card.state==='canceled'? '注销':
-                    account.card.state==='frozen'? '冻结':"未知"
+                <text class="text info_item_value {{detail.card.state}}">{{
+                    detail.card.state==='normal'? '正常':
+                    detail.card.state==='canceled'? '注销':
+                    detail.card.state==='frozen'? '冻结':"未知"
                     }}</text>
             </view>
         </view>
@@ -67,14 +65,14 @@
 
     <view class="card_info_view">
         <view class="info_view_header">
-            <image src="/image/icon/department.svg" class="icon"></image>
+            <text class="icon iconfont icon-xiaojuchang"></text>
             <text class="text info-title">部门信息</text>
-            <text class="text text-right">{{account.departmentChain[account.departmentChain.length-1].name}}</text>
+            <text class="text text-right">{{detail.departmentChain[detail.departmentChain.length-1].name}}</text>
         </view>
         <view class="info_item_view">
             <view class="info_item">
                 <view class="text dept_value info_item_value">
-                    <text wx:for="{{account.departmentChain}}">{{item.name}}</text>
+                    <text wx:for="{{detail.departmentChain}}">{{item.name}}</text>
                 </view>
             </view>
         </view>

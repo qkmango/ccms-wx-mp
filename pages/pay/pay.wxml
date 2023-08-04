@@ -1,17 +1,22 @@
-<view wx:if="{{ logined }}" id="qr_view">
-    <view class="qrcode_img_main">
-        <canvas id="qrcode" canvas-id="qrcode" style="z-index:1;width:{{width}}rpx;height:{{height}}rpx;" />
+<view class="pay-view">
+    <image src="/image/shopping-cart.svg" class="bg-image" />
+    <view wx:if="{{ logined }}" id="qr_view">
+        <view class="qrcode_img_main">
+            <canvas id="qrcode" canvas-id="qrcode" style="z-index:1;width:{{width}}rpx;height:{{height}}rpx;" />
+        </view>
+        <text id="qr_no">{{ content }}</text>
+        <button bindtap="refresh" class="button dull-polish-btn">刷新</button>
     </view>
-    <text id="qr_no">{{ content }}</text>
-    <button bindtap="refresh">刷新</button>
-</view>
-<view wx:else class="tip">
-    <!-- <icon type="clear" size="93"></icon>
+    <view wx:else class="tip">
+        <!-- <icon type="clear" size="93"></icon>
     <text>未登录，请去登陆</text> -->
-    <view>
-        <icon type="clear" size="93"></icon>
-    </view>
-    <view>
-        <navigator target="self" open-type='navigate' url="/pages/login/login?switchTab=/pages/pay/pay">未登录，请去登录</navigator>
+        <view>
+            <icon type="clear" size="93"></icon>
+        </view>
+        <view>
+            <navigator target="self" open-type='navigate' url="/pages/login/login?switchTab=/pages/pay/pay">
+                未登录，请去登录
+            </navigator>
+        </view>
     </view>
 </view>
