@@ -59,20 +59,6 @@ Page({
         });
     },
 
-    // 跳转到部门页面
-    toDeptPage: function () {
-        wx.navigateTo({
-            url: '/pages/dept/dept',
-        });
-    },
-
-    //跳转到消费记录页面
-    toConsumePage: function () {
-        wx.navigateTo({
-            url: '/pages/consume/consume',
-        });
-    },
-
     /**
      * 生命周期函数--监听页面加载
      */
@@ -163,7 +149,7 @@ Page({
                     icon: 'error',
                     duration: 2000,
                 });
-            },
+            }
         });
     },
 

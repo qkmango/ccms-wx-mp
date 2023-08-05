@@ -5,7 +5,9 @@
         "pages/settings/settings",
         "pages/pay/pay",
         "pages/index/index",
-        "pages/login/login"
+        "pages/login/login",
+        "pages/dept/dept",
+        "pages/consume/consume"
     ],
     "window": {
         "backgroundTextStyle": "dark",

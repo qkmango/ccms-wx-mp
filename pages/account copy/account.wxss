@@ -1,5 +1,4 @@
 @import '/assets/iconfont/iconfont.wxss';
-@import '/assets/card.wxss';
 
 .header {
     position: relative;
@@ -56,21 +55,8 @@
     background-position: center;
     background-size: 50rpx;
 }
-.settings > .iconfont {
+.settings>.iconfont {
     font-size: 48rpx;
-}
-.info_view {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-/* 
-.info_view {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.info_view > .card_info_view:nth-child(even) {
-    margin-left: 0;
 }
 
 .card_info_view {
@@ -78,7 +64,6 @@
     margin: 28rpx;
     overflow: hidden;
     box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
-    background-color: #fff;
 }
 
 .text {
@@ -104,27 +89,22 @@
 
 .info_item_view {
     padding: 20rpx;
-}
-
-.info-item-view-center {
-    text-align: center;
+    background-color: #fff;
 }
 
 .info_view_header {
+    background-color: rgba(0, 150, 94, 0.1);
     padding: 20rpx;
 }
 
 .info_item {
+    background-color: #fafafa;
     display: inline-block;
     border-radius: 20rpx;
     padding: 10rpx 20rpx;
     text-align: center;
     margin: auto 10rpx;
     vertical-align: middle;
-}
-
-.info-item-bg {
-    background-color: #fafafa;
 }
 
 .money {
@@ -144,7 +124,16 @@
 .info_item_title {
     color: #696969;
     font-size: 26rpx;
-} */
+}
+
+.dept_value {
+    text-align: left;
+    line-height: normal;
+}
+.dept_value > text:not(:first-child)::before {
+    content: ' > ';
+    vertical-align: middle;
+}
 
 /* 状态字体颜色 */
 .normal {
@@ -159,22 +148,3 @@
 .loss {
     color: #ffb800;
 }
-
-.watermark-icon {
-    font-size: 100rpx;
-    color: #09b060;
-    position: relative;
-}
-
-.button {
-    width: auto !important;
-}
-
-/* 消费卡片 */
-/* .consume .info_item {
-    background-color: transparent;
-} */
-
-/* .consume .info_item_view {
-    text-align: center;
-} */

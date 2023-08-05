@@ -1,43 +1,105 @@
 @font-face {
-    font-family: 'iconfont';
-    src: url('/assets/iconfont/iconfont.woff2?t=1691158153884') format('woff2');
+  font-family: "iconfont"; /* Project id 4198044 */
+  src: url('//at.alicdn.com/t/c/font_4198044_ce2qle8vy2o.woff2?t=1691239046591') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4198044_ce2qle8vy2o.woff?t=1691239046591') format('woff'),
+       url('//at.alicdn.com/t/c/font_4198044_ce2qle8vy2o.ttf?t=1691239046591') format('truetype');
 }
 
 .iconfont {
-    font-family: 'iconfont' !important;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-baozi:before {
+  content: "\e8c2";
+}
+
+.icon-kafeibeisvg:before {
+  content: "\e8c3";
+}
+
+.icon-dangao:before {
+  content: "\e8c4";
+}
+
+.icon-lengyin:before {
+  content: "\e8c5";
+}
+
+.icon-bingjilin:before {
+  content: "\e8c9";
+}
+
+.icon-guozhi:before {
+  content: "\e8ca";
+}
+
+.icon-sanmingzhi:before {
+  content: "\e8cb";
+}
+
+.icon-lvshu-4:before {
+  content: "\e839";
+}
+
+.icon-lvshu-8:before {
+  content: "\e83a";
+}
+
+.icon-lvshu-9:before {
+  content: "\e83b";
+}
+
+.icon-lvshu-33:before {
+  content: "\e83c";
+}
+
+.icon-lvshu-30:before {
+  content: "\e83d";
+}
+
+.icon-lvshu-34:before {
+  content: "\e83e";
+}
+
+.icon-lvshu-26:before {
+  content: "\e83f";
+}
+
+.icon-maiyizengyi:before {
+  content: "\e8b2";
 }
 
 .icon-shezhi:before {
-    content: '\e8b8';
+  content: "\e8b8";
 }
 
 .icon-shandian:before {
-    content: '\e8b6';
+  content: "\e8b6";
 }
 
 .icon-shangquan:before {
-    content: '\e8b7';
+  content: "\e8b7";
 }
 
 .icon-xiaojuchang:before {
-    content: '\e8bd';
+  content: "\e8bd";
 }
 
 .icon-yinhangka:before {
-    content: '\e8bf';
+  content: "\e8bf";
 }
 
 .icon-wode:before {
-    content: '\e8c6';
+  content: "\e8c6";
 }
 
 .icon-shouye:before {
-    content: '\e8c7';
+  content: "\e8c7";
 }
 
 .icon-yinhangyouhui:before {
-    content: '\e8c8';
+  content: "\e8c8";
 }
