@@ -8,33 +8,48 @@ Page({
     data: {
         width: 512,
         height: 512,
-        content: '0',
+        // content: '0',
+        qrcode: {
+            code: null,
+            account: null,
+        },
         size: {
             w: 0,
             h: 0,
         },
-        logined: false,
+        login: false,
+        // 二维码是否已经绘制
+        render: false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        if (getApp().account()) {
-            this.setData({
-                logined: true,
-            });
-            wx.showLoading({
-                title: '刷新中...',
-                mask: true,
-            });
-            this.setData({ size: this.setCanvasSize() });
-            this.setData({
-                content: Date.now(),
-            });
-            this.drawQRCode();
-            wx.hideLoading();
+        if (!getApp().account()) {
+            return false;
         }
+
+        this.setData({
+            login: true,
+        });
+
+        wx.showLoading({
+            title: '刷新中...',
+            mask: true,
+        });
+        this.setData({ size: this.setCanvasSize() });
+
+        this.createQrCode()
+            .then((res) => {
+                this.setData({
+                    qrcode: res,
+                });
+                this.drawQRCode();
+            })
+            .finally(() => {
+                wx.hideLoading();
+            });
     },
 
     //重新绘制二维码
@@ -44,21 +59,31 @@ Page({
             title: '刷新中...',
             mask: true,
         });
-        this.setData({
-            content: Date.now(),
-        });
-        this.drawQRCode();
-        wx.hideLoading();
+
+        this.createQrCode()
+            .then((res) => {
+                this.setData({
+                    qrcode: res,
+                });
+                this.drawQRCode();
+                // wx.hideLoading();
+            })
+            .finally(() => {
+                wx.hideLoading();
+            });
     },
 
     //绘制二维码
     drawQRCode: function () {
         let that = this;
         new QRCode('qrcode', {
-            text: that.data.content + '',
+            text: JSON.stringify(that.data.qrcode),
             width: this.data.size.w,
             height: this.data.size.h,
             correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度
+        });
+        that.setData({
+            render: true,
         });
     },
 
@@ -79,6 +104,37 @@ Page({
     },
 
     /**
+     * 获取二维码
+     */
+    createQrCode() {
+        this.setData({
+            render: false,
+        });
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${getApp().globalData.host}/api/pay/create-qrcode.do`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: getApp().token(),
+                },
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        // console.log(res.data.data);
+                        // console.log(JSON.stringify(res.data.data));
+                        resolve(res.data.data);
+                    } else {
+                        reject();
+                    }
+                },
+                fail: (res) => {
+                    reject();
+                },
+            });
+        });
+    },
+
+    /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {},
@@ -88,14 +144,16 @@ Page({
      */
     onShow() {
         if (getApp().account()) {
-            this.drawQRCode();
             this.setData({
-                logined: true,
+                login: true,
             });
         } else {
             this.setData({
-                logined: false,
+                login: false,
             });
+        }
+        if (!this.render) {
+            this.drawQRCode();
         }
     },
 

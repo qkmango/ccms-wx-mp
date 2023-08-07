@@ -1,11 +1,11 @@
 <view class="pay-view">
     <image src="/image/shopping-cart.svg" class="bg-image" />
-    <view wx:if="{{ logined }}" id="qr_view">
+    <view wx:if="{{ login }}" id="qr_view">
         <view class="qrcode_img_main">
             <canvas id="qrcode" canvas-id="qrcode" style="z-index:1;width:{{width}}rpx;height:{{height}}rpx;" />
         </view>
-        <text id="qr_no">{{ content }}</text>
-        <button bindtap="refresh" class="button dull-polish-btn">刷新</button>
+        <text id="qr_no">{{ qrcode.code }}</text>
+        <button bindtap="refresh" class="button" type="primary">刷新</button>
     </view>
     <view wx:else class="tip">
         <!-- <icon type="clear" size="93"></icon>
