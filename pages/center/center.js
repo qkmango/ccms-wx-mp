@@ -3,7 +3,9 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        detail: null
+    },
 
     //微信授权登陆
     login: function () {
@@ -18,34 +20,6 @@ Page({
         });
     },
 
-    /**
-     * 获取用户信息
-     * @param {string} JSESSIONID
-     * @param {function} callback
-     * @returns
-     */
-    getUserInfo: function (JSESSIONID, callback) {
-        console.log('JSESSIONID', JSESSIONID);
-        if (!JSESSIONID) {
-            console.error('JSESSIONID is null');
-            return;
-        }
-
-        const that = this;
-
-        wx.request({
-            url: `${getApp().globalData.host}/account/one/info.do`,
-            method: 'GET',
-            header: {
-                'content-type': 'application/json',
-                cookie: JSESSIONID,
-            },
-            success: (res) => {
-                callback && callback(res, that);
-            },
-        });
-    },
-
     toSettingsPage: function () {
         wx.navigateTo({
             url: '/pages/settings/settings',
@@ -55,7 +29,21 @@ Page({
     //跳转到登陆页面，登陆成功后跳转到当前页面
     toLoginPage: function () {
         wx.navigateTo({
-            url: '/pages/login/login?switchTab=/pages/account/account',
+            url: '/pages/login/login?switchTab=/pages/center/center',
+        });
+    },
+
+    // 跳转到部门页面
+    toDeptPage: function () {
+        wx.navigateTo({
+            url: '/pages/dept/dept',
+        });
+    },
+
+    //跳转到消费记录页面
+    toConsumePage: function () {
+        wx.navigateTo({
+            url: '/pages/consume/consume',
         });
     },
 
@@ -68,9 +56,9 @@ Page({
 
     // 判断是否登陆
     assertLogin: function () {
-        let detail = getApp().account();
-        if (detail) {
-            this.setData({ detail });
+        let account = getApp().account();
+        if (account) {
+            this.setData({ detail: { account } });
         } else {
             this.setData({ detail: null });
         }
@@ -79,7 +67,27 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady() {},
+    onReady() {
+        let card = getApp().card();
+        const _this = this;
+        if (card) {
+            this.setData({
+                detail: {
+                    card,
+                },
+            });
+        } else {
+            getApp().getCardInfo({
+                success: (res) => {
+                    if (res.data.success) {
+                        // 获取卡片信息成功
+                        // 保存卡片信息
+                        getApp().card(res.data.data);
+                    }
+                },
+            });
+        }
+    },
 
     /**
      * 生命周期函数--监听页面显示
@@ -149,7 +157,7 @@ Page({
                     icon: 'error',
                     duration: 2000,
                 });
-            }
+            },
         });
     },
 

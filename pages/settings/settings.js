@@ -9,6 +9,7 @@ Page({
         const that = this;
         getApp().token(null);
         getApp().account(null);
+        getApp().card(null);
 
         wx.showToast({
             title: '退出成功',
@@ -17,7 +18,7 @@ Page({
         });
         // 退出成功后，回到首页
         wx.switchTab({
-            url: '/pages/account/account',
+            url: '/pages/center/center',
         });
     },
 

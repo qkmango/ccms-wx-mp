@@ -6,7 +6,6 @@ Page({
     data: {},
 
     loginSubmit: function (e) {
-        console.log('loginSubmit');
         wx.showLoading({
             title: '登陆中...',
         });
@@ -24,116 +23,35 @@ Page({
                 if (res.data.success) {
                     // 登陆成功
                     // 保存token
-                    getApp().token(res.data.data);
-
-                    wx.showToast({
-                        title: '登录成功',
-                        icon: 'success',
-                        duration: 2000,
-                    });
-
-                    // 获取用户详细信息
-                    // this.getAccountDetail();
-                    getApp().getAccountDetail({
-                        before: () => {
-                            wx.showLoading({
-                                title: '获取用户信息...',
-                            });
-                        },
-                        success: (res) => {
-                            if (res.data.success) {
-                                // 获取用户信息成功
-                                // 保存用户详细信息
-                                res.data.data.avatarUrl = '/image/avatar.jpg';
-
-                                if (res.data.data.account.role === 'user') {
-                                    getApp().account(res.data.data);
-                                    wx.showToast({
-                                        title: '获取用户信息成功',
-                                        icon: 'success',
-                                        duration: 2000,
-                                        complete: () => {
-                                            wx.switchTab({
-                                                url: this.data.switchTab,
-                                            });
-                                        },
-                                    });
-                                } else {
-                                    wx.showToast({
-                                        title: '该账号不是用户',
-                                        icon: 'error',
-                                        duration: 2000,
-                                    });
-                                }
-                            } else {
-                                wx.showToast({
-                                    title: '获取用户信息失败',
-                                    icon: 'error',
-                                    duration: 2000,
-                                });
-                            }
-                        },
+                    getApp().token(res.data.data.token);
+                    getApp().account(res.data.data.account);
+                    wx.switchTab({
+                        url: this.data.switchTab,
                     });
                 } else {
                     wx.showToast({
-                        title: '用户名或密码错误',
+                        title: '登录失败',
                         icon: 'error',
                         duration: 2000,
                     });
                 }
             },
+            fail: (res) => {
+                wx.showToast({
+                    title: '登录失败',
+                    icon: 'error',
+                    duration: 2000,
+                });
+            }
         });
     },
-
-    // getAccountDetail: function () {
-    //     getApp().getAccountDetail({
-    //         before: () => {
-    //             wx.showLoading({
-    //                 title: '获取用户信息...',
-    //             });
-    //         },
-    //         success: (res) => {
-    //             if (res.data.success) {
-    //                 // 获取用户信息成功
-    //                 // 保存用户详细信息
-    //                 res.data.data.avatarUrl = '/image/avatar.jpg';
-
-    //                 if (res.data.data.account.role === 'user') {
-    //                     getApp().account(res.data.data);
-    //                     wx.showToast({
-    //                         title: '获取用户信息成功',
-    //                         icon: 'success',
-    //                         duration: 2000,
-    //                         complete: () => {
-    //                             wx.switchTab({
-    //                                 url: this.data.switchTab,
-    //                             });
-    //                         },
-    //                     });
-    //                 } else {
-    //                     wx.showToast({
-    //                         title: '该账号不是用户',
-    //                         icon: 'error',
-    //                         duration: 2000,
-    //                     });
-    //                 }
-    //             } else {
-    //                 wx.showToast({
-    //                     title: '获取用户信息失败',
-    //                     icon: 'error',
-    //                     duration: 2000,
-    //                 });
-    //             }
-    //         },
-    //     });
-    // },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
         this.setData({
-            switchTab: options.switchTab || '/pages/account/account',
+            switchTab: options.switchTab || '/pages/center/center',
         });
     },
 

@@ -16,9 +16,9 @@ Page({
      */
     onLoad(options) {
         // return;
-        let accountDetail = getApp().account();
+        let account = getApp().account();
         //如果没有信息
-        if (!accountDetail) {
+        if (!account) {
             //弹窗提示
             wx.showToast({
                 title: '未登录',
@@ -29,7 +29,7 @@ Page({
         }
 
         //获取部门链
-        let department = accountDetail.account.department;
+        let department = account.department;
 
         //获取部门链
 
@@ -42,15 +42,12 @@ Page({
             },
             success: (res) => {
                 if (res.data.success) {
-                    console.log(res.data.data);
                     this.setData({
                         departmentChain: res.data.data,
                     });
                 }
             },
         });
-
-        console.log(accountDetail);
     },
 
     /**

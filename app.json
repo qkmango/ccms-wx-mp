@@ -1,13 +1,14 @@
 {
     "pages": [
-        "pages/account/account",
+        "pages/center/center",
         "pages/test/test",
         "pages/settings/settings",
         "pages/pay/pay",
         "pages/index/index",
         "pages/login/login",
         "pages/dept/dept",
-        "pages/consume/consume"
+        "pages/consume/consume",
+        "pages/account/account"
     ],
     "window": {
         "backgroundTextStyle": "dark",
@@ -32,7 +33,7 @@
                 "selectedColor": "#09b060"
             },
             {
-                "pagePath": "pages/account/account",
+                "pagePath": "pages/center/center",
                 "iconPath": "image/nav/user.png",
                 "selectedIconPath": "image/nav/user-select.png",
                 "selectedColor": "#09b060"

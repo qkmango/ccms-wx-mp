@@ -14,7 +14,7 @@ App({
         });
     },
     globalData: {
-        host: 'http://192.168.1.3',
+        host: 'http://192.168.1.4',
         account: null,
         token: null,
     },
@@ -92,13 +92,51 @@ App({
         return null;
     },
 
-    getAccountDetail: function ({ before, success, fail, _this }) {
+
+    card: function (card) {
+        //如果传入null则删除card
+        if (card === null) {
+            this.globalData.card = null;
+            wx.removeStorageSync('card');
+            return;
+        }
+
+        //如果传入card则保存card
+        if (card) {
+            this.globalData.card = card;
+            wx.setStorageSync('card', card);
+            return;
+        }
+
+        //先从全局变量中获取card
+        card = this.globalData.card;
+        if (card) {
+            return card;
+        }
+
+        //如果全局变量没有再从本地存储中获取card
+        card = wx.getStorageSync('card');
+
+        //判断是否存在card
+        if (card) {
+            //同步到全局变量中
+            this.globalData.card = card;
+            return card;
+        }
+
+        return null;
+    },
+
+
+
+
+    getAccountInfo: function ({ before, success, fail, _this }) {
         if (before) {
             before();
         }
 
         wx.request({
-            url: `${getApp().globalData.host}/api/account/one/current-account-detail.do`,
+            url: `${getApp().globalData.host}/api/account/one/current-account-info.do`,
             header: {
                 'content-type': 'application/x-www-form-urlencoded',
                 Authorization: this.token(),
@@ -116,4 +154,32 @@ App({
             },
         });
     },
+
+
+    getCardInfo: function ({ before, success, fail, _this }) {
+        if (before) {
+            before();
+        }
+
+        wx.request({
+            url: `${getApp().globalData.host}/api/card/one/current-card-info.do`,
+            header: {
+                'content-type': 'application/x-www-form-urlencoded',
+                Authorization: this.token(),
+            },
+            timeout: 3000,
+            success: (res) => {
+                if (success) {
+                    success(res);
+                }
+            },
+            fail: (res) => {
+                if (fail) {
+                    fail(res);
+                }
+            },
+        });
+    },
+
+
 });

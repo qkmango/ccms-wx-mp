@@ -40,10 +40,11 @@ Page({
         });
         this.setData({ size: this.setCanvasSize() });
 
-        this.createQrCode()
+        this.getQrCode()
             .then((res) => {
                 this.setData({
                     qrcode: res,
+                    render: false,
                 });
                 this.drawQRCode();
             })
@@ -60,10 +61,11 @@ Page({
             mask: true,
         });
 
-        this.createQrCode()
+        this.getQrCode()
             .then((res) => {
                 this.setData({
                     qrcode: res,
+                    render: false,
                 });
                 this.drawQRCode();
                 // wx.hideLoading();
@@ -106,10 +108,7 @@ Page({
     /**
      * 获取二维码
      */
-    createQrCode() {
-        this.setData({
-            render: false,
-        });
+    getQrCode() {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${getApp().globalData.host}/api/pay/create-qrcode.do`,
@@ -134,6 +133,12 @@ Page({
         });
     },
 
+    toLoginPage() {
+        wx.navigateTo({
+            url: '/pages/login/login?switchTab=/pages/pay/pay',
+        });
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -147,13 +152,27 @@ Page({
             this.setData({
                 login: true,
             });
+            if (!this.render && !this.data.qrcode.code) {
+                this.getQrCode()
+                    .then((res) => {
+                        this.setData({
+                            qrcode: res,
+                            render: false,
+                        });
+                        this.drawQRCode();
+                    })
+                    .finally(() => {
+                        wx.hideLoading();
+                    });
+            }
         } else {
             this.setData({
                 login: false,
+                qrcode: {
+                    code: null,
+                    account: null,
+                },
             });
-        }
-        if (!this.render) {
-            this.drawQRCode();
         }
     },
 
