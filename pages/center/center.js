@@ -4,20 +4,13 @@ Page({
      * 页面的初始数据
      */
     data: {
-        detail: null
+        account: null,
+        card: null,
     },
 
-    //微信授权登陆
+    //判断是否登陆
     login: function () {
-        wx.getUserProfile({
-            desc: '登陆授权',
-            success: (res) => {
-                getApp().globalData.userInfo = res.userInfo;
-            },
-            fail: (res) => {
-                console.log('授权失败');
-            },
-        });
+        return !(getApp().account() === null || getApp().account() === undefined);
     },
 
     toSettingsPage: function () {
@@ -51,43 +44,69 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.assertLogin();
+        // this.assertLogin();
     },
 
     // 判断是否登陆
     assertLogin: function () {
+        const _this = this;
         let account = getApp().account();
         if (account) {
-            this.setData({ detail: { account } });
+            _this.setData({ account });
         } else {
-            this.setData({ detail: null });
+            _this.setData({ account: null, card: null });
+            return;
         }
+
+        let card = getApp().card();
+        if (card) {
+            _this.setData({ card });
+        } else {
+            getApp()
+                .getCardInfo2()
+                .then((res) => {
+                    if (res.data.success) {
+                        _this.setData({ card: res.data.data });
+                    }
+                });
+        }
+    },
+
+    reloadAccountInfo() {
+        wx.showLoading({
+            title: '刷新中...',
+        });
+        getApp()
+            .getAccountInfo2()
+            .then((res) => {
+                if (res.data.success) {
+                    this.setData({ account: res.data.data });
+                }
+            })
+            .finally(() => {
+                wx.hideLoading();
+            });
+    },
+    reloadCardInfo() {
+        wx.showLoading({
+            title: '刷新中...',
+        });
+        getApp()
+            .getCardInfo2()
+            .then((res) => {
+                if (res.data.success) {
+                    this.setData({ card: res.data.data });
+                }
+            })
+            .finally(() => {
+                wx.hideLoading();
+            });
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady() {
-        let card = getApp().card();
-        const _this = this;
-        if (card) {
-            this.setData({
-                detail: {
-                    card,
-                },
-            });
-        } else {
-            getApp().getCardInfo({
-                success: (res) => {
-                    if (res.data.success) {
-                        // 获取卡片信息成功
-                        // 保存卡片信息
-                        getApp().card(res.data.data);
-                    }
-                },
-            });
-        }
-    },
+    onReady() {},
 
     /**
      * 生命周期函数--监听页面显示
@@ -109,57 +128,7 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh() {
-        //判断是否登陆，如果未登录，就不执行下面的代码
-        if (getApp().account() == null) {
-            wx.stopPullDownRefresh();
-            return;
-        }
-
-        getApp().getAccountDetail({
-            before: () => {
-                wx.showLoading({
-                    title: '获取用户信息...',
-                });
-            },
-            success: (res) => {
-                wx.stopPullDownRefresh();
-                if (res.data.success) {
-                    // 获取用户信息成功
-                    // 保存用户详细信息
-                    res.data.data.avatarUrl = '/image/avatar.jpg';
-                    if (res.data.data.account.role === 'user') {
-                        getApp().account(res.data.data);
-                        wx.showToast({
-                            title: '获取用户信息成功',
-                            icon: 'success',
-                            duration: 2000,
-                        });
-                    } else {
-                        wx.showToast({
-                            title: '该账号不是用户',
-                            icon: 'error',
-                            duration: 2000,
-                        });
-                    }
-                } else {
-                    wx.showToast({
-                        title: '获取用户信息失败',
-                        icon: 'error',
-                        duration: 2000,
-                    });
-                }
-            },
-            fail: (res) => {
-                wx.stopPullDownRefresh();
-                wx.showToast({
-                    title: '获取用户信息失败',
-                    icon: 'error',
-                    duration: 2000,
-                });
-            },
-        });
-    },
+    onPullDownRefresh() {},
 
     /**
      * 页面上拉触底事件的处理函数

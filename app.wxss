@@ -19,7 +19,7 @@ page {
 /* 按钮样式 */
 .button {
     border-radius: 40rpx;
-    background-color: #09b060;
+    /* background-color: #09b060; */
 }
 
 .button.max-width {

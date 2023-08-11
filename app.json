@@ -15,7 +15,7 @@
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "CCMS校园一卡通",
         "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true,
+        "enablePullDownRefresh": false,
         "backgroundColor": "#efefef"
     },
     "tabBar": {

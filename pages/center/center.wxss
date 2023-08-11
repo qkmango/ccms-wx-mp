@@ -1,4 +1,4 @@
-@import '/assets/iconfont/iconfont.wxss';
+@import '/assets/iconfont.wxss';
 @import '/assets/card.wxss';
 
 .header {
@@ -63,88 +63,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-/* 
-.info_view {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.info_view > .card_info_view:nth-child(even) {
-    margin-left: 0;
-}
-
-.card_info_view {
-    border-radius: 20rpx;
-    margin: 28rpx;
-    overflow: hidden;
-    box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-}
-
-.text {
-    vertical-align: middle;
-    color: #09b060;
-}
-
-.text-right {
-    float: right;
-}
-
-.info-title {
-    font-weight: bold;
-    margin: 20rpx 0;
-}
-
-.icon {
-    margin-right: 18rpx;
-    vertical-align: middle;
-    color: #09b060;
-    font-weight: bold;
-}
-
-.info_item_view {
-    padding: 20rpx;
-}
-
-.info-item-view-center {
-    text-align: center;
-}
-
-.info_view_header {
-    padding: 20rpx;
-}
-
-.info_item {
-    display: inline-block;
-    border-radius: 20rpx;
-    padding: 10rpx 20rpx;
-    text-align: center;
-    margin: auto 10rpx;
-    vertical-align: middle;
-}
-
-.info-item-bg {
-    background-color: #fafafa;
-}
-
-.money {
-    font-size: 50rpx;
-    font-weight: bold;
-    line-height: 50rpx;
-    display: block;
-}
-
-.info_item_value {
-    font-weight: bold;
-    line-height: 50rpx;
-    display: block;
-    font-size: 26rpx;
-}
-
-.info_item_title {
-    color: #696969;
-    font-size: 26rpx;
-} */
 
 /* 状态字体颜色 */
 .normal {
@@ -170,11 +88,33 @@
     width: auto !important;
 }
 
-/* 消费卡片 */
-/* .consume .info_item {
-    background-color: transparent;
-} */
+/* 刷新按钮 */
+.reload-icon {
+    font-weight: bold;
+}
 
-/* .consume .info_item_view {
+.relaod-btn {
+    display: inline;
+    background-color: #09b060;
+    color: white;
+    margin: 0;
+    padding: 0;
+    border-radius: 40rpx;
     text-align: center;
-} */
+    vertical-align: baseline;
+    display: flex;
+}
+
+.relaod-btn > text {
+    color: white !important;
+}
+
+.info_view_header {
+    display: flex;
+    align-items: center;
+    height: auto;
+}
+
+.flex-right {
+    margin-left: auto;
+}

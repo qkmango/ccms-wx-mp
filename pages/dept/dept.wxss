@@ -1,4 +1,4 @@
-@import '/assets/iconfont/iconfont.wxss';
+@import '/assets/iconfont.wxss';
 @import '/assets/card.wxss';
 
 .info_item_value > text:not(:first-child)::before {

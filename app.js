@@ -92,7 +92,6 @@ App({
         return null;
     },
 
-
     card: function (card) {
         //如果传入null则删除card
         if (card === null) {
@@ -127,9 +126,6 @@ App({
         return null;
     },
 
-
-
-
     getAccountInfo: function ({ before, success, fail, _this }) {
         if (before) {
             before();
@@ -155,6 +151,27 @@ App({
         });
     },
 
+    getAccountInfo2: function () {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${getApp().globalData.host}/api/account/one/current-account-info.do`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: this.token(),
+                },
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        getApp().account(res.data.data);
+                    }
+                    resolve(res);
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
 
     getCardInfo: function ({ before, success, fail, _this }) {
         if (before) {
@@ -181,5 +198,25 @@ App({
         });
     },
 
-
+    getCardInfo2: function () {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${getApp().globalData.host}/api/card/one/current-card-info.do`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: this.token(),
+                },
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        getApp().card(res.data.data);
+                    }
+                    resolve(res);
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
 });

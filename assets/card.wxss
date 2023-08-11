@@ -10,6 +10,7 @@
 .info_view > .card_info_view {
     border-radius: 20rpx;
     margin: 28rpx;
+    margin-bottom: 0;
     overflow: hidden;
     box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -26,7 +27,7 @@
 
 .info_view .info-title {
     font-weight: bold;
-    margin: 20rpx 0;
+    /* margin: 20rpx 0; */
 }
 
 .info_view .icon {

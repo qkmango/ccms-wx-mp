@@ -2,38 +2,38 @@
     <image class="background_image" src="/image/background_image.svg" mode="aspectFill" />
 
     <!-- 未登录 -->
-    <view wx:if="{{ !detail }}" class="nologin">
+    <view wx:if="{{ !account }}" class="nologin">
         <button class="dull-polish-btn" type="default" bindtap="toLoginPage">登陆</button>
     </view>
     
     <!-- 已登录 -->
     <!-- 账户信息 -->
     <view wx:else>
-        <image src="{{ detail.avatarUrl }}" class="avatar" />
-        <text class="nickName">{{ detail.user.name }}</text><br />
+        <image src="/image/avatar.jpg" class="avatar" />
+        <text class="nickName">{{ account.id }}</text><br />
         <button class="settings" bindtap='toSettingsPage'><text class="iconfont icon-shezhi"></text></button>
     </view>
 </view>
 
-<view wx:if="{{ detail }}" class="info_view">
+<view wx:if="{{ account }}" class="info_view">
     <!-- 卡片展示用户信息， -->
     <view class="card_info_view">
         <view class="info_view_header">
             <text class="icon iconfont icon-yinhangka"></text>
             <text class="text info-title">校园卡</text>
-            <text class="text text-right">{{detail.card.id}}</text>
+            <text class="text text-right iconfont icon-shuaxin reload-icon flex-right" bindtap="reloadCardInfo"></text>
         </view>
         <view class="info_item_view">
             <view class="info_item info-item-bg">
                 <text class="text info_item_title">余额</text>
-                <text class="text money info_item_value">{{detail.card.balance}}</text>
+                <text class="text money info_item_value">{{card.balance/100}}</text>
             </view>
             <view class="info_item info-item-bg">
                 <text class="text info_item_title">状态</text>
-                <text class="text info_item_value {{detail.card.state}}">{{
-                    detail.card.state==='normal'? '正常':
-                    detail.card.state==='canceled'? '注销':
-                    detail.card.state==='loss'? '挂失':"未知"
+                <text class="text info_item_value {{card.state}}">{{
+                    card.state==='normal'? '正常':
+                    card.state==='canceled'? '注销':
+                    card.state==='loss'? '挂失':"未知"
                     }}</text>
             </view>
         </view>
@@ -43,20 +43,20 @@
         <view class="info_view_header">
             <text class="icon iconfont icon-shandian"></text>
             <text class="text info-title">账户信息</text>
-            <text class="text text-right">{{detail.account.id}}</text>
+            <text class="text text-right iconfont icon-shuaxin reload-icon flex-right" bindtap="reloadAccountInfo"></text>
         </view>
         <view class="info_item_view">
             <view class="info_item info-item-bg">
                 <text class="text info_item_title">角色</text>
                 <!-- 这里只判断是否为用户 -->
-                <text class="text info_item_value">{{ detail.account.role==='user'? '用户':'未知'}}</text>
+                <text class="text info_item_value">{{ account.role==='user'? '用户':'未知'}}</text>
             </view>
             <view class="info_item info-item-bg">
                 <text class="text info_item_title">状态</text>
-                <text class="text info_item_value {{detail.account.state}}">{{
-                    detail.account.state==='normal'? '正常':
-                    detail.account.state==='canceled'? '注销':
-                    detail.account.state==='frozen'? '冻结':"未知"
+                <text class="text info_item_value {{account.state}}">{{
+                    account.state==='normal'? '正常':
+                    account.state==='canceled'? '注销':
+                    account.state==='frozen'? '冻结':"未知"
                     }}</text>
             </view>
         </view>
