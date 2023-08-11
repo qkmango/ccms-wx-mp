@@ -126,32 +126,7 @@ App({
         return null;
     },
 
-    getAccountInfo: function ({ before, success, fail, _this }) {
-        if (before) {
-            before();
-        }
-
-        wx.request({
-            url: `${getApp().globalData.host}/api/account/one/current-account-info.do`,
-            header: {
-                'content-type': 'application/x-www-form-urlencoded',
-                Authorization: this.token(),
-            },
-            timeout: 3000,
-            success: (res) => {
-                if (success) {
-                    success(res);
-                }
-            },
-            fail: (res) => {
-                if (fail) {
-                    fail(res);
-                }
-            },
-        });
-    },
-
-    getAccountInfo2: function () {
+    getAccountInfo: function () {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${getApp().globalData.host}/api/account/one/current-account-info.do`,
@@ -173,32 +148,7 @@ App({
         });
     },
 
-    getCardInfo: function ({ before, success, fail, _this }) {
-        if (before) {
-            before();
-        }
-
-        wx.request({
-            url: `${getApp().globalData.host}/api/card/one/current-card-info.do`,
-            header: {
-                'content-type': 'application/x-www-form-urlencoded',
-                Authorization: this.token(),
-            },
-            timeout: 3000,
-            success: (res) => {
-                if (success) {
-                    success(res);
-                }
-            },
-            fail: (res) => {
-                if (fail) {
-                    fail(res);
-                }
-            },
-        });
-    },
-
-    getCardInfo2: function () {
+    getCardInfo: function () {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${getApp().globalData.host}/api/card/one/current-card-info.do`,

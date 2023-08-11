@@ -63,7 +63,7 @@ Page({
             _this.setData({ card });
         } else {
             getApp()
-                .getCardInfo2()
+                .getCardInfo()
                 .then((res) => {
                     if (res.data.success) {
                         _this.setData({ card: res.data.data });
@@ -77,7 +77,7 @@ Page({
             title: '刷新中...',
         });
         getApp()
-            .getAccountInfo2()
+            .getAccountInfo()
             .then((res) => {
                 if (res.data.success) {
                     this.setData({ account: res.data.data });
@@ -92,7 +92,7 @@ Page({
             title: '刷新中...',
         });
         getApp()
-            .getCardInfo2()
+            .getCardInfo()
             .then((res) => {
                 if (res.data.success) {
                     this.setData({ card: res.data.data });
