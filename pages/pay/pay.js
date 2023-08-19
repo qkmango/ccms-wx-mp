@@ -111,7 +111,7 @@ Page({
     getQrCode() {
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${getApp().globalData.host}/api/pay/create-qrcode.do`,
+                url: `${getApp().globalData.host}/api/trade/create-qrcode.do`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
                     Authorization: getApp().token(),
