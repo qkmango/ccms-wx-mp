@@ -11,7 +11,7 @@
             "list": [
                 {
                     "name": "",
-                    "pathName": "pages/center/center",
+                    "pathName": "pages/card/card",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

@@ -1,6 +1,7 @@
 .info_view {
     /* display: grid;
     grid-template-columns: 1fr 1fr; */
+    /* padding: 28rpx; */
 }
 
 .info_view > .card_info_view:nth-child(even) {

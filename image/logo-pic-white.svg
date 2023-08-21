@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="318.33" height="340.74" viewBox="0 0 318.33 340.74">
+  <defs>
+    <style>
+      .a {
+        fill: #ffffff;
+      }
+    </style>
+  </defs>
+  <title>svg_pic</title>
+  <g>
+    <rect class="a" x="115.73" width="86.09" height="340.74" rx="27.06"/>
+    <rect class="a" x="116.11" y="-0.15" width="86.09" height="340.74" rx="27.06" transform="translate(91.32 393.16) rotate(-120)"/>
+    <rect class="a" x="116.11" y="-0.15" width="86.09" height="340.74" rx="27.06" transform="translate(-67.82 222.94) rotate(-60)"/>
+  </g>
+</svg>

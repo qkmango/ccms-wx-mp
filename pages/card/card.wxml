@@ -1,0 +1,41 @@
+<!-- pages/card/card.wxml -->
+<view class="card">
+    <view class="card-header">
+        <view class="card-header-left">
+            <image src="/image/logo-white.svg" />
+        </view>
+        <view class="card-header-right">
+            <text>1932101149</text>
+        </view>
+    </view>
+    <view class="card-body">
+        <text class="card-body-balance-text">可用余额(元)</text>
+        <text class="card-body-balance-num">632.00</text>
+    </view>
+</view>
+<view class="operation">
+    <view class="operation-item">
+        <button class="operation-item-btn">
+            <i class="iconfont icon-yingpingmoban"></i>
+            <text class="operation-item-name">账单</text>
+        </button>
+    </view>
+    <view class="operation-item">
+        <button class="operation-item-btn">
+            <i class="iconfont icon-yingpingmoban"></i>
+            <text class="operation-item-name">账单</text>
+        </button>
+    </view>
+    <view class="operation-item">
+        <button class="operation-item-btn">
+            <i class="iconfont icon-yingpingmoban"></i>
+            <text class="operation-item-name">账单</text>
+        </button>
+    </view>
+    <view class="operation-item">
+        <button class="operation-item-btn">
+            <i class="iconfont icon-yingpingmoban"></i>
+            <text class="operation-item-name">账单</text>
+        </button>
+    </view>
+</view>

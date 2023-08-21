@@ -1,0 +1,113 @@
+@import '/assets/iconfont.wxss';
+
+page {
+    padding: 28rpx;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* 卡片 */
+.card {
+    background-color: #1578f9;
+    aspect-ratio: 16/9;
+    border-radius: 28rpx;
+
+    background-image: linear-gradient(to right, #1578f9, #0391fd);
+    background-size: cover;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMTguMzMiIGhlaWdodD0iMzQwLjc0IiB2aWV3Qm94PSIwIDAgMzE4LjMzIDM0MC43NCI+DQogIDxkZWZzPg0KICAgIDxzdHlsZT4NCiAgICAgIC5hIHsNCiAgICAgICAgZmlsbDogI2ZmZmZmZjsNCiAgICAgIH0NCiAgICA8L3N0eWxlPg0KICA8L2RlZnM+DQogIDx0aXRsZT5zdmdfcGljPC90aXRsZT4NCiAgPGc+DQogICAgPHJlY3QgY2xhc3M9ImEiIHg9IjExNS43MyIgd2lkdGg9Ijg2LjA5IiBoZWlnaHQ9IjM0MC43NCIgcng9IjI3LjA2Ii8+DQogICAgPHJlY3QgY2xhc3M9ImEiIHg9IjExNi4xMSIgeT0iLTAuMTUiIHdpZHRoPSI4Ni4wOSIgaGVpZ2h0PSIzNDAuNzQiIHJ4PSIyNy4wNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTEuMzIgMzkzLjE2KSByb3RhdGUoLTEyMCkiLz4NCiAgICA8cmVjdCBjbGFzcz0iYSIgeD0iMTE2LjExIiB5PSItMC4xNSIgd2lkdGg9Ijg2LjA5IiBoZWlnaHQ9IjM0MC43NCIgcng9IjI3LjA2IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjcuODIgMjIyLjk0KSByb3RhdGUoLTYwKSIvPg0KICA8L2c+DQo8L3N2Zz4NCg==);
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: 116% 190%;
+
+    box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    height: 78rpx;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10rpx 28rpx;
+    box-sizing: border-box;
+}
+
+.card-header-left,
+.card-header-right {
+    display: inline-block;
+    height: 100%;
+    /* background-color: aquamarine; */
+}
+
+.card-header-left > image {
+    display: inline-block;
+    height: 100%;
+    width: 200rpx;
+    filter: drop-shadow(4rpx 4rpx 4rpx rgba(0, 0, 0, 0.15));
+}
+
+.card-header-right {
+    float: right;
+}
+
+.card-header-right > text {
+    vertical-align: -webkit-baseline-middle;
+    color: white;
+    text-shadow: 4rpx 4rpx 4rpx rgba(0, 0, 0, 0.15);
+}
+
+/* card-body */
+.card-body {
+    height: 100px;
+    padding: 10rpx 28rpx;
+    line-height: 2;
+}
+
+.card-body-balance-text {
+    display: block;
+    font-size: 32rpx;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.card-body-balance-num {
+    display: block;
+    font-size: 56rpx;
+    color: #fff;
+}
+
+/* 功能 */
+.operation {
+    /* height: 100px; */
+    background-color: #fff;
+    border-radius: 28rpx;
+    margin-top: 28rpx;
+    box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 16rpx;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.operation-item {
+    display: inline-block;
+    aspect-ratio: 1;
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    margin: 0;
+    display: inline;
+    font-size: 0;
+}
+
+.operation-item-btn {
+    display: inline-block;
+    height: auto !important;
+    width: auto !important;
+    color: #1578f9;
+}
+
+.operation-item .iconfont {
+    font-size: 56rpx;
+    display: block;
+}
