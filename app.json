@@ -1,52 +1,49 @@
 {
-    "pages": [
-        "pages/center/center",
-        "pages/test/test",
-        "pages/settings/settings",
-        "pages/pay/pay",
-        "pages/index/index",
-        "pages/login/login",
-        "pages/dept/dept",
-        "pages/consume/consume",
-        "pages/account/account",
-        "pages/card/card"
-    ],
-    "window": {
-        "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "CCMS校园一卡通",
-        "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": false,
-        "backgroundColor": "#efefef"
-    },
-    "tabBar": {
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "iconPath": "image/nav/home.png",
-                "selectedIconPath": "image/nav/home-select.png",
-                "selectedColor": "#09b060"
-            },
-            {
-                "pagePath": "pages/pay/pay",
-                "iconPath": "image/nav/pay.png",
-                "selectedIconPath": "image/nav/pay-select.png",
-                "selectedColor": "#09b060"
-            },
-            {
-                "pagePath": "pages/card/card",
-                "iconPath": "image/nav/pay.png",
-                "selectedIconPath": "image/nav/pay-select.png",
-                "selectedColor": "#09b060"
-            },
-            {
-                "pagePath": "pages/center/center",
-                "iconPath": "image/nav/user.png",
-                "selectedIconPath": "image/nav/user-select.png",
-                "selectedColor": "#09b060"
-            }
-        ]
-    },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json"
+	"pages": [
+		"pages/center/center",
+		"pages/test/test",
+		"pages/settings/settings",
+		"pages/pay/pay",
+		"pages/index/index",
+		"pages/login/login",
+		"pages/dept/dept",
+		"pages/consume/consume",
+		"pages/account/account",
+		"pages/card/card"
+	],
+	"window": {
+		"backgroundTextStyle": "dark",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "CCMS校园一卡通",
+		"navigationBarTextStyle": "black",
+		"enablePullDownRefresh": false,
+		"backgroundColor": "#efefef"
+	},
+	"tabBar": {
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "image/nav/home.png",
+				"selectedIconPath": "image/nav/home-select.png",
+				"selectedColor": "#09b060"
+			},
+			{
+				"pagePath": "pages/card/card",
+				"iconPath": "image/nav/pay.png",
+				"selectedIconPath": "image/nav/pay-select.png",
+				"selectedColor": "#09b060"
+			},
+			{
+				"pagePath": "pages/center/center",
+				"iconPath": "image/nav/user.png",
+				"selectedIconPath": "image/nav/user-select.png",
+				"selectedColor": "#09b060"
+			}
+		]
+	},
+	"style": "v2",
+	"sitemapLocation": "sitemap.json",
+	"miniApp": {
+		"useAuthorizePage": true
+	}
 }

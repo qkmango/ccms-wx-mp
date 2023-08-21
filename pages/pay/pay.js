@@ -8,7 +8,6 @@ Page({
     data: {
         width: 512,
         height: 512,
-        // content: '0',
         qrcode: {
             code: null,
             account: null,
@@ -18,33 +17,31 @@ Page({
             h: 0,
         },
         login: false,
-        // 二维码是否已经绘制
-        render: false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        if (!getApp().account()) {
-            return false;
+        //判断登陆
+        let account = getApp().account();
+        let card = getApp().card();
+
+        //判断状态
+        if (!(account && account.state === 'normal' && card && card.state === 'normal')) {
+            return;
         }
 
-        this.setData({
-            login: true,
-        });
-
+        this.setData({ login: true, size: this.setCanvasSize() });
         wx.showLoading({
             title: '刷新中...',
             mask: true,
         });
-        this.setData({ size: this.setCanvasSize() });
 
         this.getQrCode()
             .then((res) => {
                 this.setData({
                     qrcode: res,
-                    render: false,
                 });
                 this.drawQRCode();
             })
@@ -65,10 +62,8 @@ Page({
             .then((res) => {
                 this.setData({
                     qrcode: res,
-                    render: false,
                 });
                 this.drawQRCode();
-                // wx.hideLoading();
             })
             .finally(() => {
                 wx.hideLoading();
@@ -83,9 +78,6 @@ Page({
             width: this.data.size.w,
             height: this.data.size.h,
             correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度
-        });
-        that.setData({
-            render: true,
         });
     },
 
@@ -111,7 +103,7 @@ Page({
     getQrCode() {
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${getApp().globalData.host}/api/trade/create-qrcode.do`,
+                url: `${getApp().globalData.host}/api/pay/system/create-qrcode.do`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
                     Authorization: getApp().token(),
@@ -119,8 +111,6 @@ Page({
                 timeout: 3000,
                 success: (res) => {
                     if (res.data.success) {
-                        // console.log(res.data.data);
-                        // console.log(JSON.stringify(res.data.data));
                         resolve(res.data.data);
                     } else {
                         reject();
@@ -133,71 +123,8 @@ Page({
         });
     },
 
-    toLoginPage() {
-        wx.navigateTo({
-            url: '/pages/login/login?switchTab=/pages/pay/pay',
-        });
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {},
-
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow() {
-        if (getApp().account()) {
-            this.setData({
-                login: true,
-            });
-            if (!this.render && !this.data.qrcode.code) {
-                this.getQrCode()
-                    .then((res) => {
-                        this.setData({
-                            qrcode: res,
-                            render: false,
-                        });
-                        this.drawQRCode();
-                    })
-                    .finally(() => {
-                        wx.hideLoading();
-                    });
-            }
-        } else {
-            this.setData({
-                login: false,
-                qrcode: {
-                    code: null,
-                    account: null,
-                },
-            });
-        }
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {},
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {},
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {},
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {},
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {},
+    onShow() {},
 });

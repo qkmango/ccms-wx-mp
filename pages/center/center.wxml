@@ -2,7 +2,7 @@
     <image class="background_image" src="/image/background_image.svg" mode="aspectFill" />
 
     <!-- 未登录 -->
-    <view wx:if="{{ !account }}" class="nologin">
+    <view wx:if="{{ !login }}" class="nologin">
         <button class="dull-polish-btn" type="default" bindtap="toLoginPage">登陆</button>
     </view>
     
@@ -15,9 +15,9 @@
     </view>
 </view>
 
-<view wx:if="{{ account }}" class="info_view">
+<view wx:if="{{ login }}" class="info_view">
     <!-- 卡片展示用户信息， -->
-    <view class="card_info_view">
+    <!-- <view class="card_info_view">
         <view class="info_view_header">
             <text class="icon iconfont icon-yinhangka"></text>
             <text class="text info-title">校园卡</text>
@@ -30,16 +30,16 @@
             </view>
             <view class="info_item info-item-bg">
                 <text class="text info_item_title">状态</text>
-                <text class="text info_item_value {{card.state}}">{{
+                <text class="text info_item_value">{{
                     card.state==='normal'? '正常':
                     card.state==='canceled'? '注销':
                     card.state==='loss'? '挂失':"未知"
                     }}</text>
             </view>
         </view>
-    </view>
+    </view> -->
 
-    <view class="card_info_view">
+    <!-- <view class="card_info_view">
         <view class="info_view_header">
             <text class="icon iconfont icon-shandian"></text>
             <text class="text info-title">账户信息</text>
@@ -48,7 +48,6 @@
         <view class="info_item_view">
             <view class="info_item info-item-bg">
                 <text class="text info_item_title">角色</text>
-                <!-- 这里只判断是否为用户 -->
                 <text class="text info_item_value">{{ account.role==='user'? '用户':'未知'}}</text>
             </view>
             <view class="info_item info-item-bg">
@@ -60,7 +59,7 @@
                     }}</text>
             </view>
         </view>
-    </view>
+    </view> -->
 
 
     <view class="card_info_view">
@@ -70,23 +69,22 @@
         </view>
         <view class="info_item_view info-item-view-center">
             <view class="info_item">
-                <button class="button" type="primary" bindtap="toDeptPage">查看<text class="iconfont icon-icon-test"></text></button>
+                <button class="button" type="default" bindtap="toDeptPage">查看<text class="iconfont icon-icon-test"></text></button>
             </view>
         </view>
     </view>
 
-    <view class="card_info_view">
+    <!-- <view class="card_info_view">
         <view class="info_view_header">
             <text class="icon iconfont icon-maiyizengyi"></text>
             <text class="text info-title">消费记录</text>
-            <text class="text text-right">  </text>
         </view>
         <view class="info_item_view info-item-view-center">
             <view class="info_item">
                 <view class="text info_item_value">
-                    <button class="button" type="primary" bindtap="toConsumePage">查看<text class="iconfont icon-icon-test"></text></button>
+                    <button class="button" type="default" bindtap="toConsumePage">查看<text class="iconfont icon-icon-test"></text></button>
                 </view>
             </view>
         </view>
-    </view>
+    </view> -->
 </view>

@@ -60,8 +60,8 @@
     font-size: 48rpx;
 }
 .info_view {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
 }
 
 /* 状态字体颜色 */

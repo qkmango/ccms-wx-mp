@@ -5,13 +5,14 @@ Page({
      */
     data: {
         account: null,
-        card: null,
+        // card: null,
+        login: false,
     },
 
     //判断是否登陆
-    login: function () {
-        return !(getApp().account() === null || getApp().account() === undefined);
-    },
+    // login: function () {
+    //     return !(getApp().account() === null || getApp().account() === undefined);
+    // },
 
     toSettingsPage: function () {
         wx.navigateTo({
@@ -48,29 +49,9 @@ Page({
     },
 
     // 判断是否登陆
-    assertLogin: function () {
-        const _this = this;
-        let account = getApp().account();
-        if (account) {
-            _this.setData({ account });
-        } else {
-            _this.setData({ account: null, card: null });
-            return;
-        }
+    // assertLogin: function () {
 
-        let card = getApp().card();
-        if (card) {
-            _this.setData({ card });
-        } else {
-            getApp()
-                .getCardInfo()
-                .then((res) => {
-                    if (res.data.success) {
-                        _this.setData({ card: res.data.data });
-                    }
-                });
-        }
-    },
+    // },
 
     reloadAccountInfo() {
         wx.showLoading({
@@ -111,8 +92,59 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
+    // onShow2() {
+    //     const _this = this;
+    //     let account = getApp().account();
+    //     if (account) {
+    //         _this.setData({ account });
+    //     } else {
+    //         _this.setData({ account: null, card: null });
+    //         return;
+    //     }
+
+    //     let card = getApp().card();
+    //     if (card) {
+    //         _this.setData({ card });
+    //     } else {
+    //         getApp()
+    //             .getCardInfo()
+    //             .then((res) => {
+    //                 if (res.data.success) {
+    //                     _this.setData({ card: res.data.data });
+    //                 }
+    //             });
+    //     }
+    // },
     onShow() {
-        this.assertLogin();
+        let account = getApp().account();
+        if (account) {
+            this.setData({ login: true });
+        } else {
+            this.setData({ login: false, account: null });
+        }
+
+        //如果已经登陆但是card和account信息为 null
+        if (account && this.data.account === null) {
+            this.setData({ account });
+        }
+
+        // if (account && this.data.card === null) {
+        //     const _this = this;
+        //     getApp()
+        //         .getCardInfo()
+        //         .then((res) => {
+        //             if (res.data.success) {
+        //                 _this.setData({
+        //                     card: res.data.data,
+        //                 });
+        //             }
+        //         });
+        // } else if (account && this.data.card != null) {
+        //     let card = getApp().card();
+        //     this.setData({
+        //         card: card,
+        //     });
+        // }
     },
 
     /**

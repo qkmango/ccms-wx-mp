@@ -1,5 +1,4 @@
-<view class="pay-view">
-    <image wx-if="{{ !login }}" src="/image/shopping-cart.svg" class="bg-image" />
+<view class="pay-view" wx:if="{{login}}">
     <view wx:if="{{ login }}" id="qr_view">
         <view class="qrcode_img_main">
             <canvas id="qrcode" canvas-id="qrcode" style="z-index:1;width:{{width}}rpx;height:{{height}}rpx;" />
@@ -8,16 +7,10 @@
         <button bindtap="refresh" class="button" type="primary">刷新</button>
     </view>
     <view wx:else class="tip">
-        <!-- <icon type="clear" size="93"></icon>
-    <text>未登录，请去登陆</text> -->
         <view>
             <icon type="clear" size="93"></icon>
         </view>
         <view>
-            <!-- <navigator target="self" open-type='navigate' url="/pages/login/login?switchTab=/pages/pay/pay">
-                
-                <button type="primary" class="button">未登录，请去登录</button>
-            </navigator> -->
             <button type="primary" class="button" bindtap="toLoginPage">去登录</button>
         </view>
     </view>

@@ -38,7 +38,7 @@
             "disablePlugins": [],
             "outputPath": ""
         },
-        "condition": false
+        "condition": true
     },
     "compileType": "miniprogram",
     "libVersion": "2.19.4",
@@ -48,5 +48,9 @@
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
+    },
+    "projectArchitecture": "multiPlatform",
+    "simulatorPluginLibVersion": {
+        "wxext14566970e7e9f62": "2.27.3"
     }
 }

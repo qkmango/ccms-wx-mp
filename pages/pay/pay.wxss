@@ -29,7 +29,7 @@
     height: 100%;
 }
 
-.tip>view {
+.tip > view {
     display: flex;
     justify-items: center;
     justify-content: center;
@@ -37,9 +37,9 @@
     height: 50%;
 }
 
-.tip>view:first-child {
+.tip > view:first-child {
     align-items: flex-end;
 }
-.tip>view:last-child {
+.tip > view:last-child {
     align-items: flex-start;
 }
