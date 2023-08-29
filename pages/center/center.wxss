@@ -1,5 +1,6 @@
 @import '/assets/iconfont.wxss';
 @import '/assets/card.wxss';
+@import '/assets/base64img.wxss';
 
 .header {
     position: relative;
@@ -31,7 +32,7 @@
     height: 128rpx;
     border-radius: 50%;
     position: relative;
-    margin-left: 20rpx;
+    margin-left: 28rpx;
     vertical-align: middle;
 }
 
@@ -40,7 +41,7 @@
     font-weight: bold;
     position: relative;
     font-size: 50rpx;
-    color: #09b060;
+    color: #fff;
     vertical-align: middle;
 }
 

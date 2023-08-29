@@ -14,7 +14,7 @@ App({
         });
     },
     globalData: {
-        host: 'http://192.168.1.5',
+        host: 'http://192.168.1.3',
         account: null,
         token: null,
     },

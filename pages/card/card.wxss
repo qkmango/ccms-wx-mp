@@ -1,4 +1,6 @@
 @import '/assets/iconfont.wxss';
+@import '/assets/weui.wxss';
+@import '/assets/base64img.wxss';
 
 page {
     padding: 28rpx;
@@ -8,37 +10,29 @@ page {
 }
 /* 卡片 */
 .card {
-    /* background-color: #1578f9; */
-    aspect-ratio: 16/9;
+    aspect-ratio: 2.5/1;
     border-radius: 28rpx;
-
-    /* background-image: linear-gradient(to right, #1578f9, #0391fd); */
-    background-image: linear-gradient(to right, #00965e, #2da44e);
     background-size: cover;
     overflow: hidden;
     box-sizing: border-box;
-
-    /* background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMTguMzMiIGhlaWdodD0iMzQwLjc0IiB2aWV3Qm94PSIwIDAgMzE4LjMzIDM0MC43NCI+DQogIDxkZWZzPg0KICAgIDxzdHlsZT4NCiAgICAgIC5hIHsNCiAgICAgICAgZmlsbDogI2ZmZmZmZjsNCiAgICAgIH0NCiAgICA8L3N0eWxlPg0KICA8L2RlZnM+DQogIDx0aXRsZT5zdmdfcGljPC90aXRsZT4NCiAgPGc+DQogICAgPHJlY3QgY2xhc3M9ImEiIHg9IjExNS43MyIgd2lkdGg9Ijg2LjA5IiBoZWlnaHQ9IjM0MC43NCIgcng9IjI3LjA2Ii8+DQogICAgPHJlY3QgY2xhc3M9ImEiIHg9IjExNi4xMSIgeT0iLTAuMTUiIHdpZHRoPSI4Ni4wOSIgaGVpZ2h0PSIzNDAuNzQiIHJ4PSIyNy4wNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTEuMzIgMzkzLjE2KSByb3RhdGUoLTEyMCkiLz4NCiAgICA8cmVjdCBjbGFzcz0iYSIgeD0iMTE2LjExIiB5PSItMC4xNSIgd2lkdGg9Ijg2LjA5IiBoZWlnaHQ9IjM0MC43NCIgcng9IjI3LjA2IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjcuODIgMjIyLjk0KSByb3RhdGUoLTYwKSIvPg0KICA8L2c+DQo8L3N2Zz4NCg==); */
-    /* background-size: 40%; */
     background-repeat: no-repeat;
     background-position: 116% 190%;
-
     box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
     height: 78rpx;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.1);
+    /* background-color: rgba(255, 255, 255, 0.1); */
     padding: 10rpx 28rpx;
     box-sizing: border-box;
+    backdrop-filter: blur(10px);
 }
 
 .card-header-left,
 .card-header-right {
     display: inline-block;
     height: 100%;
-    /* background-color: aquamarine; */
 }
 
 .card-header-left > image {
@@ -60,18 +54,35 @@ page {
 
 /* card-body */
 .card-body {
-    height: 100px;
-    padding: 10rpx 28rpx;
-    line-height: 2;
+    height: calc(100% - 78rpx);
+    padding: 10rpx 28rpx 28rpx 28rpx;
+    position: relative;
+    box-sizing: border-box;
 }
 
-.card-body-text-box {
+.card-body-line-box {
     margin-top: 16rpx;
     font-size: 32rpx;
-    color: rgba(255, 255, 255, 0.6);
+    /* color: rgba(255, 255, 255, 0.6); */
+    color: #fff;
 }
 
-.card-body-balance-text {
+.card-body-line-box-bottom {
+    position: absolute;
+    width: calc(100% - 56rpx);
+    bottom: 28rpx;
+    font-size: 0;
+}
+
+.pay-btn {
+    display: inline;
+    position: absolute;
+    width: auto !important;
+    right: 0;
+    background-color: #000;
+    color: #fff;
+    border-radius: 100rpx;
+    line-height: 1;
 }
 
 .card-body-state {
@@ -83,65 +94,15 @@ page {
 }
 
 .card-body-balance-num {
-    display: block;
-    font-size: 56rpx;
-    color: #fff;
-    margin-top: -16rpx;
-}
-
-/* 功能 */
-.operation {
-    /* height: 100px; */
-    background-color: #fff;
-    border-radius: 28rpx;
-    margin-top: 28rpx;
-    box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    padding: 16rpx;
-    display: flex;
-    justify-content: space-evenly;
-    /* overflow: scroll; */
-}
-
-.operation-item {
-    display: inline-block;
-    aspect-ratio: 1;
-    display: grid;
-    justify-items: center;
-    justify-content: center;
-    margin: 0;
     display: inline;
-    font-size: 0;
+    font-size: 48rpx;
+    color: #000;
+    font-weight: bold;
+    vertical-align: -webkit-baseline-middle;
 }
 
-.operation-item-btn {
-    display: inline-block;
-    height: auto !important;
-    width: auto !important;
-    color: #00965e;
-    aspect-ratio: 1;
-    padding: 0;
-
-    aspect-ratio: 1/1 !important;
-    /* display: table; */
-    width: 130rpx !important;
-    /* height: 65px !important; */
-    /* padding-bottom: 12rpx; */
-    /* box-sizing: border-box; */
-    padding: 16rpx;
-    border-radius: 16rpx;
-}
-
-.operation-item-name {
-    font-size: 32rpx;
-    /* margin-top: -16rpx; */
-    font-weight: normal;
-}
-
-.operation-item .iconfont {
-    font-size: 56rpx;
-    display: block;
-    line-height: 1;
+.card-body-balance-num-symbol {
+    font-size: 36rpx;
 }
 
 /* 未登录 */
@@ -163,4 +124,37 @@ page {
 }
 .tip > view:last-child {
     align-items: flex-start;
+}
+
+.list {
+    margin-top: 28rpx;
+    border-radius: 28rpx;
+    background-color: #fff;
+    font-size: 0;
+    position: relative;
+    box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.list-item {
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+}
+
+.list-item-name {
+    font-size: 36rpx;
+}
+.list-item-icon {
+    font-size: 36rpx;
+    margin-right: 16rpx;
+}
+.list-item-go-icon {
+    font-size: 36rpx;
+    position: absolute !important;
+    right: 28rpx;
+}
+
+.weui-cells:before,
+.weui-cells:after {
+    border-top: none;
+    border-bottom: none;
 }

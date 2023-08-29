@@ -18,6 +18,7 @@ Page({
             data: {
                 id,
                 password,
+                type: 'ACCESS_TOKEN',
             },
             success: (res) => {
                 if (res.data.success) {
@@ -42,7 +43,7 @@ Page({
                     icon: 'error',
                     duration: 2000,
                 });
-            }
+            },
         });
     },
 

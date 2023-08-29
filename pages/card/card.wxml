@@ -1,6 +1,6 @@
 <!-- pages/card/card.wxml -->
 <view wx:if="{{login}}">
-    <view class="card">
+    <view class="card image-1-background-image">
         <view class="card-header">
             <view class="card-header-left">
                 <image src="/image/logo-white.svg" />
@@ -10,8 +10,8 @@
             </view>
         </view>
         <view class="card-body">
-            <view class="card-body-text-box">
-                <text class="card-body-balance-text">可用余额(元)</text>
+            <view class="card-body-line-box">
+                <!-- <text class="card-body-balance-text">可用余额(元)</text> -->
                 <text class="card-body-state" wx:if="{{card.state==='normal'}}">
                     <text class="iconfont icon-icon-test1"></text> 正常
                 </text>
@@ -23,36 +23,39 @@
                 </text>
                 <text class="card-body-state" wx:else>未知</text>
             </view>
-            <text class="card-body-balance-num">{{balance}}</text>
+            <view class="card-body-line-box-bottom">
+                <text class="card-body-balance-num"><text class="card-body-balance-num-symbol">￥</text>{{balance}}</text>
+                <button class="pay-btn"  bindtap="toPayPage">付款</button>
+            </view>
         </view>
     </view>
-    <view class="operation">
-        <view class="operation-item">
-            <button class="operation-item-btn" bindtap="toPayPage">
-                <text class="iconfont icon-system-QRcode"></text>
-                <text class="operation-item-name">支付</text>
-            </button>
+
+    <view class="weui-cells list">
+        <view class="weui-cell weui-cell_access" bindtap="toPayPage">
+            <text class="list-item-icon iconfont icon-saoyisao"></text>
+            <text class="list-item-name">付款</text>
+            <text class="weui-cell__ft list-item-go-icon"></text>
         </view>
-        <view class="operation-item">
-            <button class="operation-item-btn">
-                <text class="iconfont icon-yingpingmoban"></text>
-                <text class="operation-item-name">账单</text>
-            </button>
+        <view class="weui-cell weui-cell_access">
+            <text class="list-item-icon iconfont icon-yingpingmoban"></text>
+            <text class="list-item-name">账单</text>
+            <text class="weui-cell__ft list-item-go-icon"></text>
         </view>
-        <view class="operation-item">
-            <button class="operation-item-btn" bindtap="updateCardState">
-                <text class="iconfont icon-icon-test5"></text>
-                <text class="operation-item-name">挂解</text>
-            </button>
+        <view class="weui-cell weui-cell_access" bindtap="updateCardState">
+            <text class="list-item-icon iconfont icon-icon-test5"></text>
+            <text class="list-item-name">挂解</text>
+            <text class="weui-cell__ft list-item-go-icon"></text>
         </view>
-        <view class="operation-item">
-            <button class="operation-item-btn">
-                <text class="iconfont icon-yingpingmoban"></text>
-                <text class="operation-item-name">账单</text>
-            </button>
+        <view class="weui-cell weui-cell_access">
+            <text class="list-item-icon iconfont icon-yingpingmoban"></text>
+            <text class="list-item-name">账单</text>
+            <text class="weui-cell__ft list-item-go-icon"></text>
         </view>
     </view>
 </view>
+
+
+<!-- 登陆 -->
 <view wx:else class="tip">
     <view>
         <icon type="clear" size="93"></icon>
