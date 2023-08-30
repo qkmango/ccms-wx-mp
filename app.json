@@ -9,7 +9,8 @@
         "pages/dept/dept",
         "pages/consume/consume",
         "pages/account/account",
-        "pages/card/card"
+        "pages/card/card",
+        "pages/trade/trade"
     ],
     "window": {
         "backgroundTextStyle": "dark",
@@ -30,8 +31,8 @@
             },
             {
                 "pagePath": "pages/card/card",
-                "iconPath": "image/nav/pay.png",
-                "selectedIconPath": "image/nav/pay-select.png"
+                "iconPath": "image/nav/card.png",
+                "selectedIconPath": "image/nav/card-select.png"
             },
             {
                 "pagePath": "pages/center/center",

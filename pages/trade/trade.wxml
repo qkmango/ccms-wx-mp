@@ -1,0 +1,23 @@
+<picker mode="date" header-text="选择时间" value="{{date}}" bindchange="bindDateChange" bindchange="bindDateChange">
+    <view class="weui-cells">
+        <a class="weui-cell weui-cell_access">
+            <span class="weui-cell__bd">
+                <span>日期</span>
+            </span>
+            <span class="weui-cell__ft">{{date}}</span>
+        </a>
+    </view>
+</picker>
+<view class="weui-cells">
+    <a class="weui-cell weui-cell_access" wx:for="{{list}}" wx:for-item="item">
+        <span class="weui-cell__bd level1-in" wx:if="{{item.level1==='in'}}">
+            <text class="level1-icon iconfont icon-arrow-right"></text>
+            <text>收入</text>
+        </span>
+        <span class="weui-cell__bd" wx:else>
+            <text class="level1-icon iconfont icon-arrow-left"></text>
+            <text>支出</text>
+        </span>
+        <span class="weui-cell__ft">{{item.createTime}} ￥{{item.amount/100}}</span>
+    </a>
+</view>

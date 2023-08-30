@@ -117,6 +117,13 @@ Page({
             });
         }
     },
+
+    toTradePage() {
+        wx.navigateTo({
+            url: '/pages/trade/trade',
+        });
+    },
+
     updateCardState() {
         const _this = this;
         const state = this.data.card.state;

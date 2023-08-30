@@ -36,7 +36,7 @@
             <text class="list-item-name">付款</text>
             <text class="weui-cell__ft list-item-go-icon"></text>
         </view>
-        <view class="weui-cell weui-cell_access">
+        <view class="weui-cell weui-cell_access" bindtap="toTradePage">
             <text class="list-item-icon iconfont icon-yingpingmoban"></text>
             <text class="list-item-name">账单</text>
             <text class="weui-cell__ft list-item-go-icon"></text>
