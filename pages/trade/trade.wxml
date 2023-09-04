@@ -8,8 +8,14 @@
         </a>
     </view>
 </picker>
+<!-- 暂无数据 -->
+<view class="page__bd">
+    <view class="weui-loadmore weui-loadmore_line">
+        <span class="weui-loadmore__tips">暂无数据</span>
+    </view>
+</view>
 <!-- 列表 -->
-<scroll-view class="weui-cells" scroll-y>
+<scroll-view class="weui-cells" scroll-y style="{{data.list.length===0?'background-color:transparent':''}}">
     <a class="weui-cell weui-cell_access" wx:for="{{data.list}}" wx:for-item="item">
         <span class="weui-cell__bd level1-in green" wx:if="{{item.level1==='in'}}">
             <text class="level1-icon iconfont icon-arrow-right"></text>
@@ -23,16 +29,11 @@
         <text class="date">{{item.createTimeString}}</text>
         <!-- 金额 -->
         <span class="weui-cell__ft amount green" wx:if="{{item.level1==='in'}}">
-            + {{item.amount/100}}
+            +{{item.amount/100}}
         </span>
-        <span class="weui-cell__ft amount" wx:else>- {{item.amount/100}}</span>
+        <span class="weui-cell__ft amount red" wx:else>-{{item.amount/100}}</span>
     </a>
 </scroll-view>
-<!-- 暂无数据 -->
-<view class="no-data" wx:if="{{totalPage===0}}">
-    <icon type="cancel" />
-    <text>暂无数据</text>
-</view>
 <!-- 分页 -->
 <view class="pagination">
     <button type="default" class="prev-btn" bindtap="prevPage">上一页</button>

@@ -1,13 +1,8 @@
+/* pages/trade/detail/detail.wxss */
 @import '/assets/iconfont.wxss';
 @import '/assets/weui.wxss';
-
 page {
     padding: 28rpx;
     box-sizing: border-box;
-    font-size: 36rpx;
-}
-
-.dept-chain text:not(:first-child)::before {
-    content: ' > ';
-    vertical-align: middle;
+    /* font-size: 36rpx; */
 }

@@ -3,7 +3,6 @@
 @import '/assets/iconfont.wxss';
 
 page {
-    /* padding: 28rpx; */
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -34,6 +33,10 @@ text {
     color: #00965e;
 }
 
+.red {
+    color: #ff0000;
+}
+
 .date {
     margin-left: 18rpx;
 }
@@ -43,9 +46,8 @@ text {
 }
 
 /* 无数据文字 */
-.no-data {
-    text-align: center;
-    line-height: 4;
+.page__bd .weui-loadmore_line .weui-loadmore__tips {
+    background-color: #f3f9f7;
 }
 
 /* 分页 */
@@ -61,10 +63,10 @@ text {
 .prev-btn,
 .next-btn {
     padding: 5px 10px;
-    /* background-color: #ccc; */
     color: #fff;
     border-radius: 5px;
     margin: 0 5px;
+    width: 30vw;
 }
 
 .page-info {

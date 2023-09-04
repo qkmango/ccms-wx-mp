@@ -1,30 +1,24 @@
 <view class="header image-1-background-image">
     <!-- <image class="background_image" src="/image/background_image.svg" mode="aspectFill" /> -->
-
     <!-- 未登录 -->
     <view wx:if="{{ !login }}" class="nologin">
         <button type="default" class="button" bindtap="toLoginPage">登陆</button>
     </view>
-    
     <!-- 已登录 -->
     <!-- 账户信息 -->
     <view wx:else>
         <image src="/image/avatar.jpg" class="avatar" />
-        <text class="nickName">{{ account.id }}</text><br />
-        <button class="settings" bindtap='toSettingsPage'><text class="iconfont icon-shezhi"></text></button>
+        <text class="nickname">{{ account.id }}</text>
+        <br />
+        <button class="settings" bindtap='toSettingsPage'>
+            <text class="iconfont icon-shezhi"></text>
+        </button>
     </view>
 </view>
-
-<view wx:if="{{ login }}" class="info_view">
-    <view class="card_info_view">
-        <view class="info_view_header">
-            <text class="icon iconfont icon-xiaojuchang"></text>
-            <text class="text info-title">部门信息</text>
-        </view>
-        <view class="info_item_view info-item-view-center">
-            <view class="info_item">
-                <button class="button" type="default" bindtap="toDeptPage">查看<text class="iconfont icon-icon-test"></text></button>
-            </view>
-        </view>
+<view wx:if="{{ login }}" class="weui-cells list">
+    <view class="weui-cell weui-cell_access" bindtap="toDeptPage">
+        <text class="list-item-icon iconfont icon-xiaojuchang"></text>
+        <text class="list-item-name">部门</text>
+        <span class="weui-cell__ft list-item-go-icon"></span>
     </view>
 </view>
