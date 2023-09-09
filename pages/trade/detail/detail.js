@@ -5,40 +5,49 @@ Page({
      */
     data: {
         detail: {
+            trade: null,
+            payer: null,
+            creator: null,
+            payerDeptChain: [],
+            creatorDeptChain: [],
+        },
+        computed: {
             trade: {
-                version: 1,
-                id: '21001441977274368',
-                account: 8,
-                level1: 'in',
-                level2: 'alipay',
-                level3: 'recharge',
-                state: 'success',
-                creator: 2,
-                amount: 100,
-                createTime: '1693497736984',
-                description: '一卡通充值',
+                createTime: '',
+                level1: '',
+                level2: '',
+                level3: '',
+                state: '',
             },
-            payer: { id: 8, role: 'user', state: 'normal', department: 70 },
-            creator: { id: 2, role: 'user', state: 'normal', department: 64 },
-            payerDeptChain: [
-                { id: 1, name: '学生部门', description: '教职工/学生部门', parent: 0, type: 'root' },
-                { id: 4, name: '大数据与人工智能学院', description: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', parent: 1, type: 'middle' },
-                { id: 14, name: '软件工程', description: '这是软件工程哦', parent: 4, type: 'middle' },
-                { id: 70, name: '2022软件工程3班', description: '这是2022软件工程3班哦', parent: 14, addition: '2022', type: 'leaf' },
-            ],
-            creatorDeptChain: [
-                { id: 1, name: '学生部门', description: '教职工/学生部门', parent: 0, type: 'root' },
-                { id: 4, name: '大数据与人工智能学院', description: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', parent: 1, type: 'middle' },
-                { id: 13, name: '计算机应用技术', description: '这是计算机应用技术哦', parent: 4, type: 'middle' },
-                { id: 64, name: '2020计算机应用技术1班', description: '这是2020计算机应用技术1班哦', parent: 13, addition: '2020', type: 'leaf' },
-            ],
+            payerDeptChain: '',
+            creatorDeptChain: '',
+            creator: {
+                role: '',
+                state: '',
+            },
+            payer: {
+                role: '',
+                state: '',
+            },
         },
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {},
+    onLoad(options) {
+        // this.computed();
+        // TODO 获取的数据待完善
+        console.log(options.id);
+        this.getTradeDetail(options.id).then((res) => {
+            if (res.data.success) {
+                this.setData({
+                    detail: res.data.data,
+                });
+                this.computed();
+            }
+        });
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -50,28 +59,125 @@ Page({
      */
     onShow() {},
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {},
+    computed() {
+        let { createTime, level1, level2, level3, state } = this.data.detail.trade;
+        let { payerDeptChain, creatorDeptChain } = this.data.detail;
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {},
+        this.setData({
+            'computed.trade.createTime': new Date(parseInt(createTime)).toLocaleString(),
+            'computed.trade.level1': this.computedLevel1(level1),
+            'computed.trade.level2': this.computedLevel2(level2),
+            'computed.trade.level3': this.computedLevel3(level3),
+            'computed.trade.state': this.computedTradeState(state),
+            'computed.payerDeptChain': payerDeptChain.map((item) => item.name).join(' > '),
+            'computed.creatorDeptChain': creatorDeptChain.map((item) => item.name).join(' > '),
+            'computed.creator.role': this.computedRole(this.data.detail.creator.role),
+            'computed.creator.state': this.computedAccountState(this.data.detail.creator.state),
+            'computed.payer.role': this.computedRole(this.data.detail.payer.role),
+            'computed.payer.state': this.computedAccountState(this.data.detail.payer.state),
+        });
+    },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {},
+    computedTradeState(state) {
+        switch (state) {
+            case 'fail':
+                return '失败';
+            case 'success':
+                return '成功';
+            case 'refund':
+                return '退款';
+            case 'processing':
+                return '处理中';
+            case 'close':
+                return '关闭';
+            default:
+                return '未知';
+        }
+    },
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {},
+    computedLevel1(level1) {
+        switch (level1) {
+            case 'in':
+                return '收入';
+            case 'out':
+                return '支出';
+            default:
+                return '未知';
+        }
+    },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {},
+    computedLevel2(level2) {
+        switch (level2) {
+            case 'qr':
+                return '扫码';
+            case 'card':
+                return '刷卡';
+            case 'system':
+                return '系统';
+            case 'alipay':
+                return '支付宝';
+            default:
+                return '未知';
+        }
+    },
+
+    computedLevel3(level3) {
+        switch (level3) {
+            case 'consume':
+                return '消费';
+            case 'payment':
+                return '缴费';
+            case 'refund':
+                return '退费';
+            case 'recharge':
+                return '充值';
+            case 'withdraw':
+                return '提现';
+            case 'other':
+                return '其他';
+            default:
+                return '未知';
+        }
+    },
+    computedRole(role) {
+        switch (role) {
+            case 'user':
+                return '用户';
+            case 'admin':
+                return '管理员';
+            case 'pos':
+                return '刷卡机';
+            default:
+                return '未知';
+        }
+    },
+    computedAccountState(state) {
+        switch (state) {
+            case 'normal':
+                return '正常';
+            case 'canceled':
+                return '注销';
+            case 'frozen':
+                return '冻结';
+            default:
+                return '未知';
+        }
+    },
+    getTradeDetail(id) {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${getApp().globalData.host}/api/trade/one/detail.do?id=${id}`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: getApp().token(),
+                },
+                success(res) {
+                    resolve(res);
+                },
+                fail(err) {
+                    reject(err);
+                },
+            });
+        });
+    },
 });

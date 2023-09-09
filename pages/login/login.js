@@ -1,8 +1,4 @@
-// pages/login/login.js
 Page({
-    /**
-     * 页面的初始数据
-     */
     data: {},
 
     loginSubmit: function (e) {
@@ -12,13 +8,13 @@ Page({
         const { id, password } = e.detail.value;
         // 请求登陆
         wx.request({
-            url: `${getApp().globalData.host}/api/account/system-login.do`,
+            url: `${getApp().globalData.host}/api/auth/system-login.do`,
             header: { 'content-type': 'application/x-www-form-urlencoded' },
             method: 'POST',
             data: {
                 id,
                 password,
-                type: 'ACCESS_TOKEN',
+                authCarryType: 'ACCESS_TOKEN',
             },
             success: (res) => {
                 if (res.data.success) {

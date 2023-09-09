@@ -16,7 +16,7 @@ page {
     overflow: hidden;
     box-sizing: border-box;
     background-repeat: no-repeat;
-    background-position: 116% 190%;
+    /* background-position: 116% 190%; */
     box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.1);
 }
 
@@ -103,27 +103,6 @@ page {
 
 .card-body-balance-num-symbol {
     font-size: 36rpx;
-}
-
-/* 未登录 */
-
-.tip {
-    height: 100%;
-}
-
-.tip > view {
-    display: flex;
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-}
-
-.tip > view:first-child {
-    align-items: flex-end;
-}
-.tip > view:last-child {
-    align-items: flex-start;
 }
 
 .list {

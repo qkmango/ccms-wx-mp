@@ -13,7 +13,11 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {},
+    onLoad(options) {
+        this.setData({
+            card: getApp().card(),
+        });
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -24,50 +28,35 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        let account = getApp().account();
-        if (account) {
-            this.setData({ login: true });
-        } else {
-            this.setData({ login: false, card: null, account: null });
+        if (!getApp().token()) {
+            wx.navigateTo({
+                url: '/pages/login/login?switchTab=/pages/card/card',
+            });
         }
 
-        //如果已经登陆但是card和account信息为 null
-        if (account && this.data.account === null) {
-            this.setData({ account });
-        }
+        this.setData({
+            login: true,
+        });
 
-        if (account && this.data.card === null) {
-            const _this = this;
+        let card = this.data.card;
+        let balance;
+
+        if (this.data.card === null) {
             getApp()
                 .getCardInfo()
                 .then((res) => {
                     if (res.data.success) {
-                        let balanceDecimal = new Decimal(res.data.data.balance).dividedBy(new Decimal('100')).toFixed(2);
-                        _this.setData({
-                            card: res.data.data,
-                            balance: balanceDecimal.toString(),
-                        });
+                        card = res.data.data;
                     }
                 });
-        } else if (account && this.data.card != null) {
-            let card = getApp().card();
-            let balanceDecimal = new Decimal(card.balance).dividedBy(new Decimal('100')).toFixed(2);
-            this.setData({
-                card: card,
-                balance: balanceDecimal.toString(),
-            });
         }
+
+        const balanceDecimal = new Decimal(card.balance).dividedBy(new Decimal('100')).toFixed(2);
+
+        this.setData({
+            balance: balanceDecimal.toString(),
+        });
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {},
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {},
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作

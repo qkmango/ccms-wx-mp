@@ -10,63 +10,55 @@
         <view role="option" aria-labelledby="p1 js_a11y_comma p2 js_a11y_comma p3" class="weui-form-preview__bd">
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">ID</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.trade.id}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">账户</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.trade.account}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">出入账</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.trade.level1}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">支付方式</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.trade.level2}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">支付用途</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.trade.level3}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">状态</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.trade.state}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">外部ID</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.trade.inId}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">内部ID</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.trade.outId}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">金额</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.trade.amount/100}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">创建时间</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.trade.createTime}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">创建者</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.trade.creator}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">描述</text>
-                <text class="weui-form-preview__value"></text>
-            </view>
-            <view class="weui-form-preview__item">
-                <text class="weui-form-preview__label">部门链</text>
-                <text class="weui-form-preview__value dept-chain">
-                    <text wx:for="{{departmentChain}}">{{item.name}}</text>
-                </text>
+                <text class="weui-form-preview__value">{{detail.trade.description}}</text>
             </view>
         </view>
     </div>
 </view>
-
-
 <!-- 支付账户 -->
 <view class="page__bd">
     <div class="weui-form-preview">
@@ -79,62 +71,56 @@
         <view role="option" aria-labelledby="p1 js_a11y_comma p2 js_a11y_comma p3" class="weui-form-preview__bd">
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">ID</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.payer.id}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">角色</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.payer.role}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">状态</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.payer.state}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">部门ID</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.payer.id}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">部门链</text>
-                <text class="weui-form-preview__value dept-chain">
-                    <text wx:for="{{departmentChain}}">{{item.name}}</text>
-                </text>
+                <text class="weui-form-preview__value">{{computed.payerDeptChain}}</text>
             </view>
         </view>
     </div>
 </view>
-
-
 <!-- 收款方/创建者 -->
 <view class="page__bd">
     <div class="weui-form-preview">
         <view role="option" class="weui-form-preview__hd">
             <view class="weui-form-preview__item">
-                <text class="weui-form-preview__label">收款方/创建者</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__label" style="width:auto">收款方/创建者</text>
+                <!-- <text class="weui-form-preview__value"></text> -->
             </view>
         </view>
         <view role="option" aria-labelledby="p1 js_a11y_comma p2 js_a11y_comma p3" class="weui-form-preview__bd">
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">ID</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.creator.id}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">角色</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.creator.role}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">状态</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{computed.creator.state}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">部门ID</text>
-                <text class="weui-form-preview__value"></text>
+                <text class="weui-form-preview__value">{{detail.creator.department}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">部门链</text>
-                <text class="weui-form-preview__value dept-chain">
-                    <text wx:for="{{departmentChain}}">{{item.name}}</text>
-                </text>
+                <text class="weui-form-preview__value">{{computed.creatorDeptChain}}</text>
             </view>
         </view>
     </div>

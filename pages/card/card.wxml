@@ -53,14 +53,3 @@
         </view>
     </view>
 </view>
-
-
-<!-- 登陆 -->
-<view wx:else class="tip">
-    <view>
-        <icon type="clear" size="93"></icon>
-    </view>
-    <view>
-        <button type="primary" class="button" bindtap="toLoginPage">去登录</button>
-    </view>
-</view>

@@ -6,10 +6,7 @@ Page({
     data: {
         login: false,
         date: null,
-        data: {
-            code: 0,
-            data: { count: 0, list: [] },
-        },
+        data: { count: 0, list: [] },
         page: {
             page: 1,
             limit: 20,
@@ -46,7 +43,6 @@ Page({
                 _this.setPageData(data, _this);
             }
         });
-
     },
 
     /**
@@ -61,7 +57,8 @@ Page({
         if (!(account && account.state === 'normal' && card)) {
             return;
         }
-        let date = new Date().toLocaleDateString();
+        // let date = new Date().toLocaleDateString();
+        let date = '2023-09-01';
         let { startCreateTime, endCreateTime } = this.getStartAndEndTimestamps(date);
         this.setData({
             login: true,
@@ -153,6 +150,12 @@ Page({
                 let data = res.data.data;
                 _this.setPageData(data, _this);
             }
+        });
+    },
+    toDetailPage(index) {
+        let id = this.data.data.list[index].id;
+        wx.navigateTo({
+            url: '/pages/trade/detail/detail?id=' + id,
         });
     },
 });

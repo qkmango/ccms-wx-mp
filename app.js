@@ -73,6 +73,14 @@ App({
             return;
         }
 
+        // 如果token不存在/失效则删除account
+        const token = this.token();
+        if (!token) {
+            this.globalData.account = null;
+            wx.removeStorageSync('account');
+            return null;
+        }
+
         //先从全局变量中获取account
         account = this.globalData.account;
         if (account) {
@@ -129,7 +137,7 @@ App({
     getAccountInfo: function () {
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${getApp().globalData.host}/api/account/one/current-account-info.do`,
+                url: `${getApp().globalData.host}/api/auth/one/current-account-info.do`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
                     Authorization: this.token(),
@@ -169,6 +177,4 @@ App({
             });
         });
     },
-
-    
 });

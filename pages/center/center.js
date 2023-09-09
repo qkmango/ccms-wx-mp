@@ -44,9 +44,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {
-        // this.assertLogin();
-    },
+    onLoad(options) {},
 
     // 判断是否登陆
     // assertLogin: function () {
@@ -84,67 +82,17 @@ Page({
             });
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {},
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    // onShow2() {
-    //     const _this = this;
-    //     let account = getApp().account();
-    //     if (account) {
-    //         _this.setData({ account });
-    //     } else {
-    //         _this.setData({ account: null, card: null });
-    //         return;
-    //     }
-
-    //     let card = getApp().card();
-    //     if (card) {
-    //         _this.setData({ card });
-    //     } else {
-    //         getApp()
-    //             .getCardInfo()
-    //             .then((res) => {
-    //                 if (res.data.success) {
-    //                     _this.setData({ card: res.data.data });
-    //                 }
-    //             });
-    //     }
-    // },
     onShow() {
-        let account = getApp().account();
-        if (account) {
-            this.setData({ login: true });
+        if (getApp().token()) {
+            this.setData({
+                login: true,
+                account: getApp().account(),
+            });
         } else {
-            this.setData({ login: false, account: null });
+            wx.navigateTo({
+                url: '/pages/login/login?switchTab=/pages/center/center',
+            });
         }
-
-        //如果已经登陆但是card和account信息为 null
-        if (account && this.data.account === null) {
-            this.setData({ account });
-        }
-
-        // if (account && this.data.card === null) {
-        //     const _this = this;
-        //     getApp()
-        //         .getCardInfo()
-        //         .then((res) => {
-        //             if (res.data.success) {
-        //                 _this.setData({
-        //                     card: res.data.data,
-        //                 });
-        //             }
-        //         });
-        // } else if (account && this.data.card != null) {
-        //     let card = getApp().card();
-        //     this.setData({
-        //         card: card,
-        //     });
-        // }
     },
 
     /**

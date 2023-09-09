@@ -1,12 +1,11 @@
-<view class="header image-1-background-image">
-    <!-- <image class="background_image" src="/image/background_image.svg" mode="aspectFill" /> -->
+<view wx:if="{{ login }}" class="header image-1-background-image">
     <!-- 未登录 -->
-    <view wx:if="{{ !login }}" class="nologin">
+    <!-- <view wx:if="{{ !login }}" class="nologin">
         <button type="default" class="button" bindtap="toLoginPage">登陆</button>
-    </view>
+    </view> -->
     <!-- 已登录 -->
     <!-- 账户信息 -->
-    <view wx:else>
+    <view>
         <image src="/image/avatar.jpg" class="avatar" />
         <text class="nickname">{{ account.id }}</text>
         <br />

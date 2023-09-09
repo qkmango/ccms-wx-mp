@@ -9,29 +9,31 @@
     </view>
 </picker>
 <!-- 暂无数据 -->
-<view class="page__bd">
+<view class="page__bd" hidden="{{data.list.length!==0}}">
     <view class="weui-loadmore weui-loadmore_line">
         <span class="weui-loadmore__tips">暂无数据</span>
     </view>
 </view>
 <!-- 列表 -->
-<scroll-view class="weui-cells" scroll-y style="{{data.list.length===0?'background-color:transparent':''}}">
-    <a class="weui-cell weui-cell_access" wx:for="{{data.list}}" wx:for-item="item">
-        <span class="weui-cell__bd level1-in green" wx:if="{{item.level1==='in'}}">
-            <text class="level1-icon iconfont icon-arrow-right"></text>
-            <text>收入</text>
-        </span>
-        <span class="weui-cell__bd" wx:else>
-            <text class="level1-icon iconfont icon-arrow-left"></text>
-            <text>支出</text>
-        </span>
-        <!-- 日期 -->
-        <text class="date">{{item.createTimeString}}</text>
-        <!-- 金额 -->
-        <span class="weui-cell__ft amount green" wx:if="{{item.level1==='in'}}">
-            +{{item.amount/100}}
-        </span>
-        <span class="weui-cell__ft amount red" wx:else>-{{item.amount/100}}</span>
+<scroll-view class="weui-cells" scroll-y hidden="{{data.list.length===0}}">
+    <a wx:for="{{data.list}}" wx:for-item="item">
+        <navigator class="weui-cell weui-cell_access" url="/pages/trade/detail/detail?id={{item.id}}">
+            <span class="weui-cell__bd level1-in green" wx:if="{{item.level1==='in'}}">
+                <text class="level1-icon iconfont icon-arrow-right"></text>
+                <text>收入</text>
+            </span>
+            <span class="weui-cell__bd" wx:else>
+                <text class="level1-icon iconfont icon-arrow-left"></text>
+                <text>支出</text>
+            </span>
+            <!-- 日期 -->
+            <text class="date">{{item.createTimeString}}</text>
+            <!-- 金额 -->
+            <span class="weui-cell__ft amount green" wx:if="{{item.level1==='in'}}">
+                +{{item.amount/100}}
+            </span>
+            <span class="weui-cell__ft amount red" wx:else>-{{item.amount/100}}</span>
+        </navigator>
     </a>
 </scroll-view>
 <!-- 分页 -->
