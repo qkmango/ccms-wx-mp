@@ -3,36 +3,25 @@ Page({
      * 页面的初始数据
      */
     data: {
-        departmentChain: [
-            { id: 1, name: '学生部门', description: '教职工/学生部门', parent: 0, type: 'root' },
-            { id: 4, name: '大数据与人工智能学院', description: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', parent: 1, type: 'middle' },
-            { id: 14, name: '软件工程', description: '这是软件工程哦', parent: 4, type: 'middle' },
-            { id: 70, name: '2022软件工程3班', description: '这是2022软件工程3班哦', parent: 14, addition: '2022', type: 'leaf' },
-        ],
+        departmentChain: [],
+        computed: {
+            departmentChain: '',
+        },
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        // return;
-        let account = getApp().account();
-        //如果没有信息
-        if (!account) {
-            //弹窗提示
-            wx.showToast({
-                title: '未登录',
-                icon: 'error',
-                duration: 2000,
-            });
+        let token = getApp().token();
+        if (!token) {
             return;
         }
+        let account = getApp().account();
+        const _this = this;
 
         //获取部门链
         let department = account.department;
-
-        //获取部门链
-
         wx.request({
             url: `${getApp().globalData.host}/api/department/one/chain.do`,
             header: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -42,41 +31,20 @@ Page({
             },
             success: (res) => {
                 if (res.data.success) {
-                    this.setData({
+                    _this.setData({
                         departmentChain: res.data.data,
                     });
+                    _this.computed();
                 }
             },
         });
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {},
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {},
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {},
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {},
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {},
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {},
+    computed() {
+        let departmentChain = this.data.departmentChain;
+        let chain = departmentChain.map((item) => item.name).join(' > ');
+        this.setData({
+            "computed.departmentChain": chain,
+        });
+    },
 });

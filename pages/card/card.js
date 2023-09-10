@@ -39,8 +39,6 @@ Page({
         });
 
         let card = this.data.card;
-        let balance;
-
         if (this.data.card === null) {
             getApp()
                 .getCardInfo()
@@ -119,7 +117,6 @@ Page({
         wx.showActionSheet({
             itemList: ['解挂(正常)', '挂失(丢失)'],
             success(res) {
-                console.log(res.tapIndex);
                 //如果状态未更改，或者已经注销，则不进行操作
                 if ((res.tapIndex === 0 && state === 'normal') || (res.tapIndex === 1 && state === 'loss') || state === 'canceled') {
                     return;

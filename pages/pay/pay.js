@@ -78,6 +78,7 @@ Page({
             width: this.data.size.w,
             height: this.data.size.h,
             correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度
+            colorLight: '#f3f9f7', // 背景颜色
         });
     },
 

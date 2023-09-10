@@ -23,10 +23,27 @@ text {
 
 .level1-icon {
     margin-right: 18rpx;
+    margin-right: 18rpx;
+    padding: 16rpx;
+    border-radius: 50%;
+    color: white;
 }
 
 .level1-in {
-    /* color: #00965e; */
+    background-color: #ff5722;
+}
+
+.level1-out {
+    background-color: #00965e;
+}
+
+/* 状态为非成功 */
+.no-success-icon {
+    background-color: var(--weui-FG-2);
+}
+
+.no-success-amount {
+    color: var(--weui-FG-2);
 }
 
 .green {
@@ -34,11 +51,7 @@ text {
 }
 
 .red {
-    color: #ff0000;
-}
-
-.date {
-    margin-left: 18rpx;
+    color: #ff5722;
 }
 
 .amount {

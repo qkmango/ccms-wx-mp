@@ -1,4 +1,6 @@
-// pages/trade/detail/detail.js
+import { dateTimeFormat } from '../../../utils/util';
+import Decimal from '../../../utils/decimal';
+
 Page({
     /**
      * 页面的初始数据
@@ -18,6 +20,7 @@ Page({
                 level2: '',
                 level3: '',
                 state: '',
+                amount: '',
             },
             payerDeptChain: '',
             creatorDeptChain: '',
@@ -36,9 +39,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        // this.computed();
-        // TODO 获取的数据待完善
-        console.log(options.id);
         this.getTradeDetail(options.id).then((res) => {
             if (res.data.success) {
                 this.setData({
@@ -64,11 +64,13 @@ Page({
         let { payerDeptChain, creatorDeptChain } = this.data.detail;
 
         this.setData({
-            'computed.trade.createTime': new Date(parseInt(createTime)).toLocaleString(),
+            // 'computed.trade.createTime': new Date(parseInt(createTime)).toLocaleString(),
+            'computed.trade.createTime': dateTimeFormat(new Date(parseInt(createTime))),
             'computed.trade.level1': this.computedLevel1(level1),
             'computed.trade.level2': this.computedLevel2(level2),
             'computed.trade.level3': this.computedLevel3(level3),
             'computed.trade.state': this.computedTradeState(state),
+            'computed.trade.amount': new Decimal(this.data.detail.trade.amount).dividedBy(new Decimal('100')).toFixed(2),
             'computed.payerDeptChain': payerDeptChain.map((item) => item.name).join(' > '),
             'computed.creatorDeptChain': creatorDeptChain.map((item) => item.name).join(' > '),
             'computed.creator.role': this.computedRole(this.data.detail.creator.role),
@@ -98,9 +100,9 @@ Page({
     computedLevel1(level1) {
         switch (level1) {
             case 'in':
-                return '收入';
+                return '入账';
             case 'out':
-                return '支出';
+                return '出账';
             default:
                 return '未知';
         }

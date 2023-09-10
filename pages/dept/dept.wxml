@@ -1,29 +1,25 @@
-<view>
-    <view class="page__bd">
-        <div class="weui-form-preview">
-            <view role="option" class="weui-form-preview__hd">
-                <view class="weui-form-preview__item">
-                    <text class="weui-form-preview__label">部门</text>
-                    <text class="weui-form-preview__value">{{departmentChain[departmentChain.length-1].name}}</text>
-                </view>
+<view class="page__bd">
+    <div class="weui-form-preview">
+        <view role="option" class="weui-form-preview__hd">
+            <view class="weui-form-preview__item">
+                <text class="weui-form-preview__label">部门</text>
+                <text class="weui-form-preview__value">{{departmentChain[departmentChain.length-1].name}}</text>
             </view>
-            <view role="option" aria-labelledby="p1 js_a11y_comma p2 js_a11y_comma p3" class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <text class="weui-form-preview__label">ID</text>
-                    <text class="weui-form-preview__value">{{departmentChain[departmentChain.length-1].id}}</text>
-                </view>
-                <view class="weui-form-preview__item">
-                    <text class="weui-form-preview__label">描述</text>
-                    <text class="weui-form-preview__value">{{departmentChain[departmentChain.length-1].description}}
-                    </text>
-                </view>
-                <view class="weui-form-preview__item">
-                    <text class="weui-form-preview__label">部门链</text>
-                    <text class="weui-form-preview__value dept-chain">
-                        <text wx:for="{{departmentChain}}">{{item.name}}</text>
-                    </text>
-                </view>
+        </view>
+        <view role="option" aria-labelledby="p1 js_a11y_comma p2 js_a11y_comma p3" class="weui-form-preview__bd">
+            <view class="weui-form-preview__item">
+                <text class="weui-form-preview__label">ID</text>
+                <text class="weui-form-preview__value">{{departmentChain[departmentChain.length-1].id}}</text>
             </view>
-        </div>
+            <view class="weui-form-preview__item">
+                <text class="weui-form-preview__label">描述</text>
+                <text class="weui-form-preview__value">{{departmentChain[departmentChain.length-1].description}}
+                </text>
+            </view>
+            <view class="weui-form-preview__item">
+                <text class="weui-form-preview__label">部门链</text>
+                <text class="weui-form-preview__value dept-chain">{{computed.departmentChain}}</text>
+            </view>
+        </view>
+    </div>
     </view>
-</view>

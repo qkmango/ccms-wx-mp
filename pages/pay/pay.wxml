@@ -1,17 +1,9 @@
 <view class="pay-view" wx:if="{{login}}">
-    <view wx:if="{{ login }}" id="qr_view">
+    <view id="qr_view">
         <view class="qrcode_img_main">
             <canvas id="qrcode" canvas-id="qrcode" style="z-index:1;width:{{width}}rpx;height:{{height}}rpx;" />
         </view>
         <text id="qr_no">{{ qrcode.code }}</text>
         <button bindtap="refresh" class="button" type="primary">刷新</button>
-    </view>
-    <view wx:else class="tip">
-        <view>
-            <icon type="clear" size="93"></icon>
-        </view>
-        <view>
-            <button type="primary" class="button" bindtap="toLoginPage">去登录</button>
-        </view>
     </view>
 </view>

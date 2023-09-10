@@ -42,7 +42,7 @@
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">金额</text>
-                <text class="weui-form-preview__value">{{detail.trade.amount/100}}</text>
+                <text class="weui-form-preview__value">{{detail.trade.level1==='in'?'+':'-'}}{{computed.trade.amount}}</text>
             </view>
             <view class="weui-form-preview__item">
                 <text class="weui-form-preview__label">创建时间</text>

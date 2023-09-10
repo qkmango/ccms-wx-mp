@@ -1,5 +1,5 @@
 <!-- pages/login/login.wxml -->
-<view wx:if="{{ !userInfo }}" class="from-view">
+<view wx:if="{{ !userInfo }}">
     <image src="/image/login-bg.svg" class="bg-image" />
     <form bindsubmit="loginSubmit">
         <view class="logo-view">

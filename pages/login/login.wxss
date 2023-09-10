@@ -1,27 +1,6 @@
-/* pages/login/login.wxss */
-
-/* @import '/assets/weui/weui.wxss'; */
-
-/* .toLogin {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    height: 400rpx;
-    padding: 20rpx;
-} */
 .logo-view {
     display: flex;
     justify-content: center;
-}
-
-.from-view {
-    /* height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; */
 }
 
 form {
@@ -29,28 +8,25 @@ form {
 }
 
 .input-view {
-    /* background-color: aliceblue; */
     margin: 20rpx;
     padding: 20rpx;
 }
 
 input {
-    /* background-color: #cccccc; */
     margin: 20rpx auto;
     height: 88rpx;
     padding: 10rpx 50rpx;
-    backdrop-filter: blur(10px);
-    /* background-color: red; */
+    /* backdrop-filter: blur(10px); */
     border-radius: 53rpx;
     color: #09b060;
-    /* background-color: #fff; */
-    background-color: rgba(255, 255, 255, 0.5) !important;
+    /* background-color: rgba(255, 255, 255, 0.5) !important; */
+    background-color: #fff;
+    font-weight: bold;
 }
 
 .button-view {
     margin: 20rpx;
     padding: 20rpx;
-    
 }
 
 .login-btn {

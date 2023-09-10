@@ -1,4 +1,5 @@
-// pages/trade/trade.js
+import {timeFormat} from '../../utils/util';
+
 Page({
     /**
      * 页面的初始数据
@@ -106,7 +107,7 @@ Page({
     //设置页面数据
     setPageData(data, _this) {
         data.list.forEach((item) => {
-            item.createTimeString = new Date(Number.parseInt(item.createTime)).toLocaleDateString();
+            item.createTimeString = timeFormat(new Date(Number.parseInt(item.createTime)));
         });
         let totalPage = Math.ceil(data.count / _this.data.page.limit);
         _this.setData({ data, totalPage });

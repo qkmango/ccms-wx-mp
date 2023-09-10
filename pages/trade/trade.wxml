@@ -1,5 +1,5 @@
-<picker mode="date" header-text="选择时间" value="{{date}}" bindchange="bindDateChange" bindchange="bindDateChange">
-    <view class="weui-cells">
+<picker mode="date" header-text="选择时间" value="{{date}}" bindchange="bindDateChange">
+    <view class="weui-cells" style="margin-top:0">
         <a class="weui-cell weui-cell_access">
             <span class="weui-cell__bd">
                 <span>日期</span>
@@ -18,21 +18,21 @@
 <scroll-view class="weui-cells" scroll-y hidden="{{data.list.length===0}}">
     <a wx:for="{{data.list}}" wx:for-item="item">
         <navigator class="weui-cell weui-cell_access" url="/pages/trade/detail/detail?id={{item.id}}">
-            <span class="weui-cell__bd level1-in green" wx:if="{{item.level1==='in'}}">
-                <text class="level1-icon iconfont icon-arrow-right"></text>
+            <span class="weui-cell__bd" wx:if="{{item.level1==='in'}}">
+                <text class="level1-icon level1-in {{item.state=='success'?'':'no-success-icon'}} iconfont icon-arrow-right"></text>
                 <text>收入</text>
             </span>
             <span class="weui-cell__bd" wx:else>
-                <text class="level1-icon iconfont icon-arrow-left"></text>
+                <text class="level1-icon level1-out {{item.state=='success'?'':'no-success-icon'}} iconfont icon-arrow-left"></text>
                 <text>支出</text>
             </span>
             <!-- 日期 -->
-            <text class="date">{{item.createTimeString}}</text>
+            <text class="weui-form-preview__label">{{item.createTimeString}}</text>
             <!-- 金额 -->
-            <span class="weui-cell__ft amount green" wx:if="{{item.level1==='in'}}">
+            <span class="weui-cell__ft amount  {{item.state=='success'?'red':'no-success-amount'}}" wx:if="{{item.level1==='in'}}">
                 +{{item.amount/100}}
             </span>
-            <span class="weui-cell__ft amount red" wx:else>-{{item.amount/100}}</span>
+            <span class="weui-cell__ft amount  {{item.state=='success'?'green':'no-success-amount'}}" wx:else>-{{item.amount/100}}</span>
         </navigator>
     </a>
 </scroll-view>
