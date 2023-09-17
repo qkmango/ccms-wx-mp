@@ -14,7 +14,8 @@ App({
         });
     },
     globalData: {
-        host: 'http://192.168.0.2',
+        // host: 'http://192.168.0.2',
+        host: 'http://localhost',
         account: null,
         token: null,
     },
@@ -100,6 +101,47 @@ App({
         return null;
     },
 
+    avatar: function (avatar) {
+        //如果传入null则删除
+        if (avatar === null) {
+            this.globalData.avatar = null;
+            wx.removeStorageSync('avatar');
+            return;
+        }
+
+        //如果传入avatar则保存
+        if (avatar) {
+            this.globalData.avatar = avatar;
+            wx.setStorageSync('avatar', avatar);
+            return;
+        }
+
+        // 如果token不存在/失效则删除
+        const token = this.token();
+        if (!token) {
+            this.globalData.avatar = null;
+            wx.removeStorageSync('avatar');
+            return null;
+        }
+
+        //先从全局变量中获取
+        avatar = this.globalData.avatar;
+        if (avatar) {
+            return avatar;
+        }
+
+        //如果全局变量没有再从本地存储中获取
+        avatar = wx.getStorageSync('avatar');
+
+        //判断是否存在
+        if (avatar) {
+            //同步到全局变量中
+            this.globalData.avatar = avatar;
+            return avatar;
+        }
+        return null;
+    },
+
     card: function (card) {
         //如果传入null则删除card
         if (card === null) {
@@ -170,6 +212,25 @@ App({
                         getApp().card(res.data.data);
                     }
                     resolve(res);
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+
+    getAvatar: function () {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${getApp().globalData.host}:9000/ccms/avatar/头像.jpg`,
+                method: 'GET',
+                responseType: 'arraybuffer',
+                success: (res) => {
+                    let base64 = 'data:image/jpg;base64,' + wx.arrayBufferToBase64(res);
+                    console.log(base64);
+                    // getApp().avatar(base64);
+                    resolve(base64);
                 },
                 fail: (res) => {
                     reject(res);

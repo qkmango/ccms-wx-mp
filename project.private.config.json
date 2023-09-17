@@ -11,7 +11,7 @@
             "list": [
                 {
                     "name": "",
-                    "pathName": "pages/trade/trade",
+                    "pathName": "pages/center/center",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

@@ -5,14 +5,9 @@ Page({
      */
     data: {
         account: null,
-        // card: null,
         login: false,
+        avatar: null,
     },
-
-    //判断是否登陆
-    // login: function () {
-    //     return !(getApp().account() === null || getApp().account() === undefined);
-    // },
 
     toSettingsPage: function () {
         wx.navigateTo({
@@ -40,16 +35,6 @@ Page({
             url: '/pages/consume/consume',
         });
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad(options) {},
-
-    // 判断是否登陆
-    // assertLogin: function () {
-
-    // },
 
     reloadAccountInfo() {
         wx.showLoading({
@@ -82,11 +67,21 @@ Page({
             });
     },
 
+    //获取用户头像失败后使用默认头像
+    avatarLoadError() {
+        console.log('avatar load error');
+        this.setData({
+            avatar: '/image/default_avatar.svg',
+        });
+    },
+
     onShow() {
         if (getApp().token()) {
+            let account = getApp().account();
             this.setData({
                 login: true,
-                account: getApp().account(),
+                account,
+                avatar: `${getApp().globalData.host}:9000/ccms/avatar/${account.id}.jpg`,
             });
         } else {
             wx.navigateTo({
@@ -94,29 +89,4 @@ Page({
             });
         }
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {},
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {},
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {},
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {},
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {},
 });
