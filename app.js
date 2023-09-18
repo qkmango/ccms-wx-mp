@@ -14,8 +14,8 @@ App({
         });
     },
     globalData: {
-        // host: 'http://192.168.0.2',
         host: 'http://localhost',
+        oss:'http://192.168.0.100:9000/ccms/',
         account: null,
         token: null,
     },

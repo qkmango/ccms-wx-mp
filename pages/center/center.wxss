@@ -35,6 +35,8 @@
     position: relative;
     margin-left: 28rpx;
     vertical-align: middle;
+    border: 2rpx solid #fff;
+    filter: drop-shadow(4rpx 4rpx 10rpx rgba(255, 255, 255, 0.5));
 }
 
 .nickname {

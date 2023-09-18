@@ -10,6 +10,11 @@
     </view>
 </view>
 <view wx:if="{{ login }}" class="weui-cells list">
+    <view class="weui-cell weui-cell_access" bindtap="updateAvatar">
+        <text class="list-item-icon iconfont icon-ertongpiao"></text>
+        <text class="list-item-name">头像</text>
+        <span class="weui-cell__ft list-item-go-icon"></span>
+    </view>
     <view class="weui-cell weui-cell_access" bindtap="toDeptPage">
         <text class="list-item-icon iconfont icon-xiaojuchang"></text>
         <text class="list-item-name">部门</text>

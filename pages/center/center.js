@@ -1,4 +1,5 @@
-// pages/account/account.js
+import { Api, ApiOSS } from '../../utils/api.js';
+
 Page({
     /**
      * 页面的初始数据
@@ -67,9 +68,109 @@ Page({
             });
     },
 
+    // 修改头像
+    updateAvatar() {
+        const _this = this;
+        this.chooseAvatar().then((res) => {
+            //最大 128KB = 128 * 1024 B
+            const maxSize = 128 * 1024;
+            if (res.tempFiles[0].size > maxSize) {
+                wx.showToast({
+                    title: '图片过大',
+                    icon: 'error',
+                });
+                return;
+            }
+            ApiOSS.uploadAvatar(res.tempFiles[0].tempFilePath)
+                .then((res) => {
+                    _this.setData({
+                        avatar: res,
+                    });
+                    wx.showToast({
+                        title: '上传成功',
+                        icon: 'success',
+                    });
+                })
+                .catch((res) => {
+                    wx.showToast({
+                        title: '上传失败',
+                        icon: 'error',
+                    });
+                });
+        });
+    },
+
+    // 选择头像文件
+    chooseAvatar() {
+        return new Promise((resolve, reject) => {
+            wx.chooseMedia({
+                count: 1,
+                mediaType: ['image'],
+                sourceType: 'album',
+                success: (res) => {
+                    resolve(res);
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+
+    // 上传头像
+    // uploadAvatar(tempFilePaths) {
+    //     const _this = this;
+    //     wx.showLoading({
+    //         title: '上传中...',
+    //     });
+    //     wx.uploadFile({
+    //         url: `${Api.host}/api/oss/upload/avatar.do`,
+    //         filePath: tempFilePaths,
+    //         name: 'avatar',
+    //         header: {
+    //             'content-type': 'application/x-www-form-urlencoded',
+    //             Authorization: getApp().token(),
+    //         },
+    //         formData: {
+    //             id: _this.data.account.id,
+    //         },
+    //         success: (res) => {
+    //             if (res.statusCode === 200 && JSON.parse(res.data).success) {
+    //                 wx.showToast({
+    //                     title: '上传成功',
+    //                     icon: 'success',
+    //                 });
+    //                 //读取文件转为base64
+    //                 wx.getFileSystemManager().readFile({
+    //                     filePath: tempFilePaths,
+    //                     encoding: 'base64',
+    //                     success(res) {
+    //                         _this.setData({
+    //                             avatar: 'data:image/jpg;base64,' + res.data,
+    //                         });
+    //                     },
+    //                 });
+    //                 return;
+    //             }
+    //             wx.showToast({
+    //                 title: '上传失败',
+    //                 icon: 'error',
+    //             });
+    //         },
+    //         fail: (res) => {
+    //             wx.showToast({
+    //                 title: '上传失败',
+    //                 icon: 'error',
+    //             });
+    //         },
+    //         complete: () => {
+    //             wx.hideLoading();
+    //         },
+    //     });
+    // },
+
     //获取用户头像失败后使用默认头像
     avatarLoadError() {
-        console.log('avatar load error');
         this.setData({
             avatar: '/image/default_avatar.svg',
         });
@@ -81,7 +182,7 @@ Page({
             this.setData({
                 login: true,
                 account,
-                avatar: `${getApp().globalData.host}:9000/ccms/avatar/${account.id}.jpg`,
+                avatar: `${ApiOSS.host}/ccms/avatar/${account.id}.jpg`,
             });
         } else {
             wx.navigateTo({

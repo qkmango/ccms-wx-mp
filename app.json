@@ -8,7 +8,6 @@
         "pages/login/login",
         "pages/dept/dept",
         "pages/consume/consume",
-        "pages/account/account",
         "pages/card/card",
         "pages/trade/trade",
         "pages/trade/detail/detail"
