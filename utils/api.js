@@ -1,10 +1,124 @@
 const Api = {
-    host: 'http://localhost',
+    api: 'http://localhost',
+    oss: 'http://192.168.0.100:9000',
 };
 
-const ApiOSS = {
-    host: 'http://192.168.0.100:9000',
+// 卡相关信息
+const Card = {
+    // 修改卡状态
+    updateState(state, version) {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${getApp().globalData.host}/api/card/update/current-state.do`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: getApp().token(),
+                },
+                method: 'post',
+                data: {
+                    state,
+                    version,
+                },
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
 
+    // 获取卡信息
+    getCardInfo: function () {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/card/one/current-card-info.do`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: getApp().token(),
+                },
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        getApp().card(res.data.data);
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+};
+
+// 账户相关信息
+const Account = {
+    getAccountInfo: function () {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/auth/one/current-account-info.do`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: getApp.token(),
+                },
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        getApp().account(res.data.data);
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+};
+
+const Auth = {
+    login(id, password) {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/auth/system-login.do`,
+                header: { 'content-type': 'application/x-www-form-urlencoded' },
+                method: 'POST',
+                data: {
+                    id,
+                    password,
+                    authCarryType: 'ACCESS_TOKEN',
+                },
+                success: (res) => {
+                    if (res.data.success) {
+                        // 登陆成功
+                        // 保存token
+                        getApp().token(res.data.data.token);
+                        getApp().account(res.data.data.account);
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+};
+
+const OSS = {
     /**
      * 上传头像
      * @param {string} tempFilePaths 临时文件路径, 通过 wx.chooseMedia 获取
@@ -35,7 +149,73 @@ const ApiOSS = {
                     reject(res);
                 },
                 fail: (res) => {
-                    reject();
+                    reject(res);
+                },
+            });
+        });
+    },
+
+    // 获取头像
+    getAvatar: function () {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.oss}/ccms/avatar/头像.jpg`,
+                method: 'GET',
+                responseType: 'arraybuffer',
+                success: (res) => {
+                    const base64 = 'data:image/jpg;base64,' + wx.arrayBufferToBase64(res);
+                    resolve(base64);
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+};
+
+const Trade = {
+    list(page) {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/trade/pagination/list.do`,
+                method: 'POST',
+                header: {
+                    Authorization: getApp().token(),
+                },
+                data: page,
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+
+    detail(id) {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/trade/one/detail.do?id=${id}`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: getApp().token(),
+                },
+                success(res) {
+                    if (res.data.success) {
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail(res) {
+                    reject(res);
                 },
             });
         });
@@ -44,5 +224,9 @@ const ApiOSS = {
 
 module.exports = {
     Api,
-    ApiOSS,
+    OSS,
+    Card,
+    Auth,
+    Trade,
+    Account,
 };

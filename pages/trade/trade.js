@@ -1,4 +1,5 @@
-import {timeFormat} from '../../utils/util';
+import { timeFormat } from '../../utils/util';
+import { Trade } from '../../utils/api';
 
 Page({
     /**
@@ -38,11 +39,8 @@ Page({
 
         //获取数据
         const _this = this;
-        this.getTradeList(this.data.page).then((res) => {
-            if (res.data.success) {
-                let data = res.data.data;
-                _this.setPageData(data, _this);
-            }
+        Trade.list(this.data.page).then((res) => {
+            _this.setPageData(res.data, _this);
         });
     },
 
@@ -73,34 +71,10 @@ Page({
                 },
             },
         });
+
         const _this = this;
-
-        //获取数据
-        this.getTradeList(this.data.page).then((res) => {
-            if (res.data.success) {
-                let data = res.data.data;
-                _this.setPageData(data, _this);
-            }
-        });
-    },
-
-    getTradeList(page) {
-        return new Promise((resolve, reject) => {
-            wx.request({
-                url: `${getApp().globalData.host}/api/trade/pagination/list.do`,
-                method: 'POST',
-                header: {
-                    Authorization: getApp().token(),
-                },
-                data: page,
-                timeout: 3000,
-                success: (res) => {
-                    resolve(res);
-                },
-                fail: (res) => {
-                    reject(res);
-                },
-            });
+        Trade.list(this.data.page).then((res) => {
+            _this.setPageData(res.data, _this);
         });
     },
 
@@ -130,11 +104,8 @@ Page({
         this.setData({ page, currPage: page.page });
         //获取数据
         const _this = this;
-        this.getTradeList(this.data.page).then((res) => {
-            if (res.data.success) {
-                let data = res.data.data;
-                _this.setPageData(data, _this);
-            }
+        Trade.list(this.data.page).then((res) => {
+            _this.setPageData(res.data, _this);
         });
     },
     nextPage() {
@@ -146,11 +117,8 @@ Page({
         this.setData({ page, currPage: page.page });
         //获取数据
         const _this = this;
-        this.getTradeList(this.data.page).then((res) => {
-            if (res.data.success) {
-                let data = res.data.data;
-                _this.setPageData(data, _this);
-            }
+        Trade.list(this.data.page).then((res) => {
+            _this.setPageData(res.data, _this);
         });
     },
     toDetailPage(index) {

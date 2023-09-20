@@ -1,4 +1,4 @@
-import { Api, ApiOSS } from '../../utils/api.js';
+import { Api, OSS } from '../../utils/api.js';
 
 Page({
     /**
@@ -81,7 +81,7 @@ Page({
                 });
                 return;
             }
-            ApiOSS.uploadAvatar(res.tempFiles[0].tempFilePath)
+            OSS.uploadAvatar(res.tempFiles[0].tempFilePath)
                 .then((res) => {
                     _this.setData({
                         avatar: res,
@@ -182,7 +182,7 @@ Page({
             this.setData({
                 login: true,
                 account,
-                avatar: `${ApiOSS.host}/ccms/avatar/${account.id}.jpg`,
+                avatar: `${Api.oss}/ccms/avatar/${account.id}.jpg`,
             });
         } else {
             wx.navigateTo({

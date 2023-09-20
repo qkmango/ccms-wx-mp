@@ -1,46 +1,32 @@
+import { Auth } from '../../utils/api.js';
+
 Page({
-    data: {},
+    data: {
+        switchTab: '/pages/center/center',
+    },
 
     loginSubmit: function (e) {
+        const _this = this;
         wx.showLoading({
             title: '登陆中...',
         });
         const { id, password } = e.detail.value;
         // 请求登陆
-        wx.request({
-            url: `${getApp().globalData.host}/api/auth/system-login.do`,
-            header: { 'content-type': 'application/x-www-form-urlencoded' },
-            method: 'POST',
-            data: {
-                id,
-                password,
-                authCarryType: 'ACCESS_TOKEN',
-            },
-            success: (res) => {
-                if (res.data.success) {
-                    // 登陆成功
-                    // 保存token
-                    getApp().token(res.data.data.token);
-                    getApp().account(res.data.data.account);
-                    wx.switchTab({
-                        url: this.data.switchTab,
-                    });
-                } else {
-                    wx.showToast({
-                        title: '登录失败',
-                        icon: 'error',
-                        duration: 2000,
-                    });
-                }
-            },
-            fail: (res) => {
+        Auth.login(id, password)
+            .then((res) => {
+                getApp().token(res.data.token);
+                getApp().account(res.data.account);
+                wx.switchTab({
+                    url: _this.data.switchTab,
+                });
+            })
+            .catch((res) => {
                 wx.showToast({
                     title: '登录失败',
                     icon: 'error',
                     duration: 2000,
                 });
-            },
-        });
+            });
     },
 
     /**
@@ -51,39 +37,4 @@ Page({
             switchTab: options.switchTab || '/pages/center/center',
         });
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {},
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {},
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {},
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {},
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {},
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {},
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {},
 });

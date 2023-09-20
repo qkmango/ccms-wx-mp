@@ -1,4 +1,5 @@
-// app.js
+// import { Card } from './utils/api.js';
+
 App({
     onLaunch() {
         // 展示本地存储能力
@@ -14,8 +15,8 @@ App({
         });
     },
     globalData: {
-        host: 'http://localhost',
-        oss:'http://192.168.0.100:9000/ccms/',
+        // host: 'http://localhost',
+        // oss: 'http://192.168.0.100:9000/ccms/',
         account: null,
         token: null,
     },
@@ -174,68 +175,5 @@ App({
         }
 
         return null;
-    },
-
-    getAccountInfo: function () {
-        return new Promise((resolve, reject) => {
-            wx.request({
-                url: `${getApp().globalData.host}/api/auth/one/current-account-info.do`,
-                header: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: this.token(),
-                },
-                timeout: 3000,
-                success: (res) => {
-                    if (res.data.success) {
-                        getApp().account(res.data.data);
-                    }
-                    resolve(res);
-                },
-                fail: (res) => {
-                    reject(res);
-                },
-            });
-        });
-    },
-
-    getCardInfo: function () {
-        return new Promise((resolve, reject) => {
-            wx.request({
-                url: `${getApp().globalData.host}/api/card/one/current-card-info.do`,
-                header: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: this.token(),
-                },
-                timeout: 3000,
-                success: (res) => {
-                    if (res.data.success) {
-                        getApp().card(res.data.data);
-                    }
-                    resolve(res);
-                },
-                fail: (res) => {
-                    reject(res);
-                },
-            });
-        });
-    },
-
-    getAvatar: function () {
-        return new Promise((resolve, reject) => {
-            wx.request({
-                url: `${getApp().globalData.host}:9000/ccms/avatar/头像.jpg`,
-                method: 'GET',
-                responseType: 'arraybuffer',
-                success: (res) => {
-                    let base64 = 'data:image/jpg;base64,' + wx.arrayBufferToBase64(res);
-                    console.log(base64);
-                    // getApp().avatar(base64);
-                    resolve(base64);
-                },
-                fail: (res) => {
-                    reject(res);
-                },
-            });
-        });
     },
 });

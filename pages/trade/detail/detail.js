@@ -1,5 +1,6 @@
 import { dateTimeFormat } from '../../../utils/util';
 import Decimal from '../../../utils/decimal';
+import { Trade } from '../../../utils/api';
 
 Page({
     /**
@@ -39,32 +40,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getTradeDetail(options.id).then((res) => {
-            if (res.data.success) {
-                this.setData({
-                    detail: res.data.data,
-                });
-                this.computed();
-            }
+        const _this = this;
+        Trade.detail(options.id).then((res) => {
+            _this.setData({
+                detail: res.data,
+            });
+            _this.computed();
         });
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {},
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {},
 
     computed() {
         let { createTime, level1, level2, level3, state } = this.data.detail.trade;
         let { payerDeptChain, creatorDeptChain } = this.data.detail;
 
         this.setData({
-            // 'computed.trade.createTime': new Date(parseInt(createTime)).toLocaleString(),
             'computed.trade.createTime': dateTimeFormat(new Date(parseInt(createTime))),
             'computed.trade.level1': this.computedLevel1(level1),
             'computed.trade.level2': this.computedLevel2(level2),
@@ -164,22 +153,5 @@ Page({
             default:
                 return '未知';
         }
-    },
-    getTradeDetail(id) {
-        return new Promise((resolve, reject) => {
-            wx.request({
-                url: `${getApp().globalData.host}/api/trade/one/detail.do?id=${id}`,
-                header: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: getApp().token(),
-                },
-                success(res) {
-                    resolve(res);
-                },
-                fail(err) {
-                    reject(err);
-                },
-            });
-        });
     },
 });

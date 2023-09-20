@@ -1,5 +1,6 @@
-// pages/card/card.js
 import Decimal from '../../utils/decimal';
+import { Api, Card } from '../../utils/api.js';
+
 Page({
     /**
      * 页面的初始数据
@@ -17,12 +18,8 @@ Page({
         this.setData({
             card: getApp().card(),
         });
+        console.log(this.data.card);
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {},
 
     /**
      * 生命周期函数--监听页面显示
@@ -40,17 +37,12 @@ Page({
 
         let card = this.data.card;
         if (this.data.card === null) {
-            getApp()
-                .getCardInfo()
-                .then((res) => {
-                    if (res.data.success) {
-                        card = res.data.data;
-                    }
-                });
+            Card.getCardInfo().then((res) => {
+                card = res.data;
+            });
         }
 
         const balanceDecimal = new Decimal(card.balance).dividedBy(new Decimal('100')).toFixed(2);
-
         this.setData({
             balance: balanceDecimal.toString(),
         });
@@ -60,31 +52,18 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-        getApp()
-            .getCardInfo()
+        Card.getCardInfo()
             .then((res) => {
-                if (res.data.success) {
-                    let balanceDecimal = new Decimal(res.data.data.balance).dividedBy(new Decimal('100')).toFixed(2);
-                    this.setData({
-                        card: res.data.data,
-                        balance: balanceDecimal.toString(),
-                    });
-                }
+                let balanceDecimal = new Decimal(res.data.balance).dividedBy(new Decimal('100')).toFixed(2);
+                this.setData({
+                    card: res.data,
+                    balance: balanceDecimal.toString(),
+                });
             })
             .finally(() => {
                 wx.stopPullDownRefresh();
             });
     },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {},
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {},
 
     toLoginPage() {
         wx.navigateTo({
@@ -114,6 +93,7 @@ Page({
     updateCardState() {
         const _this = this;
         const state = this.data.card.state;
+        const version = this.data.card.version;
         wx.showActionSheet({
             itemList: ['解挂(正常)', '挂失(丢失)'],
             success(res) {
@@ -132,53 +112,29 @@ Page({
                         break;
                 }
 
-                //修改状态
-                wx.request({
-                    url: `${getApp().globalData.host}/api/card/update/current-state.do`,
-                    header: {
-                        'content-type': 'application/x-www-form-urlencoded',
-                        Authorization: getApp().token(),
-                    },
-                    method: 'post',
-                    data: {
-                        state: updateState,
-                        version: _this.data.card.version,
-                    },
-                    timeout: 3000,
-                    success: (res) => {
+                // 修改状态
+                Card.updateState(updateState, version)
+                    .then((res) => {
                         //修改成功
-                        if (res.data.success) {
-                            wx.showToast({
-                                icon: 'success',
-                                duration: 2000,
-                            });
+                        wx.showToast({
+                            icon: 'success',
+                            duration: 2000,
+                        });
 
-                            //重新获取数据
-                            getApp()
-                                .getCardInfo()
-                                .then((res) => {
-                                    if (res.data.success) {
-                                        let balanceDecimal = new Decimal(res.data.data.balance).dividedBy(new Decimal('100')).toFixed(2);
-                                        _this.setData({
-                                            card: res.data.data,
-                                            balance: balanceDecimal.toString(),
-                                        });
-                                    }
-                                });
-                        } else {
-                            wx.showToast({
-                                icon: 'error',
-                                duration: 2000,
+                        Card.getCardInfo().then((res) => {
+                            let balanceDecimal = new Decimal(res.data.balance).dividedBy(new Decimal('100')).toFixed(2);
+                            _this.setData({
+                                card: res.data,
+                                balance: balanceDecimal.toString(),
                             });
-                        }
-                    },
-                    fail: (res) => {
+                        });
+                    })
+                    .catch((res) => {
                         wx.showToast({
                             icon: 'error',
                             duration: 2000,
                         });
-                    },
-                });
+                    });
             },
         });
     },
