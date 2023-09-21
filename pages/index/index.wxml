@@ -1,4 +1,27 @@
-<view class="logo">
-  <!-- <text>校园一卡通</text> -->
-  <image src='/image/logo.svg' />
+<view class="page">
+    <image class="logo" src='/image/logo.svg' />
+    <view class="page__bd">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">公告</view>
+            <navigator class="weui-panel__bd" url="/pages/trade/detail/detail?id=11111">
+                <view class="weui-media-box weui-media-box_appmsg">
+                    <view class="weui-media-box__hd">
+                        <image class="weui-media-box__thumb" src="/image/notice.svg" />
+                    </view>
+                    <view class="weui-media-box__bd">
+                        <text class="weui-media-box__title">标题一</text>
+                        <view class="weui-media-box__desc">
+                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+                        </view>
+                    </view>
+                </view>
+            </navigator>
+            <view class="weui-panel__ft">
+                <view class="weui-cell weui-cell_active weui-cell_access weui-cell_link">
+                    <view class="weui-cell__bd">查看更多</view>
+                    <view class="weui-cell__ft"></view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

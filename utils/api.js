@@ -3,16 +3,18 @@ const Api = {
     oss: 'http://192.168.0.100:9000',
 };
 
+const app = getApp();
+
 // 卡相关信息
 const Card = {
     // 修改卡状态
     updateState(state, version) {
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${getApp().globalData.host}/api/card/update/current-state.do`,
+                url: `${app.globalData.host}/api/card/update/current-state.do`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: getApp().token(),
+                    Authorization: app.token(),
                 },
                 method: 'post',
                 data: {
@@ -41,12 +43,12 @@ const Card = {
                 url: `${Api.api}/api/card/one/current-card-info.do`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: getApp().token(),
+                    Authorization: app.token(),
                 },
                 timeout: 3000,
                 success: (res) => {
                     if (res.data.success) {
-                        getApp().card(res.data.data);
+                        app.card(res.data.data);
                         resolve(res.data);
                     } else {
                         reject(res.data);
@@ -73,7 +75,7 @@ const Account = {
                 timeout: 3000,
                 success: (res) => {
                     if (res.data.success) {
-                        getApp().account(res.data.data);
+                        app.account(res.data.data);
                         resolve(res.data);
                     } else {
                         reject(res.data);
@@ -103,8 +105,8 @@ const Auth = {
                     if (res.data.success) {
                         // 登陆成功
                         // 保存token
-                        getApp().token(res.data.data.token);
-                        getApp().account(res.data.data.account);
+                        app.token(res.data.data.token);
+                        app.account(res.data.data.account);
                         resolve(res.data);
                     } else {
                         reject(res.data);
@@ -132,7 +134,7 @@ const OSS = {
                 name: 'avatar',
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: getApp().token(),
+                    Authorization: app.token(),
                 },
                 success: (res) => {
                     if (res.statusCode === 200 && JSON.parse(res.data).success) {
@@ -175,13 +177,23 @@ const OSS = {
 };
 
 const Trade = {
+    /**
+     * 获取公告列表
+     * @param {Object} page 分页信息
+     * page: 1,
+     * limit: 20,
+     * param: {
+     *
+     * },
+     * @returns
+     */
     list(page) {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${Api.api}/api/trade/pagination/list.do`,
                 method: 'POST',
                 header: {
-                    Authorization: getApp().token(),
+                    Authorization: app.token(),
                 },
                 data: page,
                 timeout: 3000,
@@ -205,7 +217,7 @@ const Trade = {
                 url: `${Api.api}/api/trade/one/detail.do?id=${id}`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: getApp().token(),
+                    Authorization: app.token(),
                 },
                 success(res) {
                     if (res.data.success) {
@@ -222,11 +234,39 @@ const Trade = {
     },
 };
 
+const Notice = {
+    // 获取公告列表
+    list(page) {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/notice/pagination/list.do`,
+                method: 'POST',
+                header: {
+                    Authorization: app.token(),
+                },
+                data: page,
+                timeout: 3000,
+                success: (res) => {
+                    if (res.data.success) {
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+};
+
 module.exports = {
     Api,
     OSS,
     Card,
     Auth,
     Trade,
+    Notice,
     Account,
 };
