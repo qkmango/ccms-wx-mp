@@ -27,4 +27,4 @@ CCMS一卡通系统（服务端）是一个校园一卡通系统，提供多种�
 
 # 架构
 
-![架构](readme/CCMS架构.jpg)
+![架构](README/CCMS架构.jpg)
