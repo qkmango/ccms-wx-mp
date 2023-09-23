@@ -10,7 +10,8 @@
         "pages/consume/consume",
         "pages/card/card",
         "pages/trade/trade",
-        "pages/trade/detail/detail"
+        "pages/trade/detail/detail",
+        "pages/notice/notice"
     ],
     "window": {
         "backgroundTextStyle": "dark",

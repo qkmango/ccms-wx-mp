@@ -79,9 +79,11 @@ text {
     color: #fff;
     border-radius: 5px;
     margin: 0 5px;
-    width: 30vw;
+    width: 35vw !important;
 }
 
 .page-info {
-    font-size: 14px;
+    /* font-size: 28rpx; */
+    width: 20vw !important;
+    text-align: center;
 }

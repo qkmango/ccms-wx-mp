@@ -1,5 +1,5 @@
 const Api = {
-    api: 'http://localhost',
+    api: 'http://192.168.0.2',
     oss: 'http://192.168.0.100:9000',
 };
 
