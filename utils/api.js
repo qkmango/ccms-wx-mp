@@ -259,6 +259,27 @@ const Notice = {
             });
         });
     },
+    record(id) {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/notice/one/record.do?id=${id}`,
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: app.token(),
+                },
+                success(res) {
+                    if (res.data.success) {
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail(res) {
+                    reject(res);
+                },
+            });
+        });
+    },
 };
 
 module.exports = {

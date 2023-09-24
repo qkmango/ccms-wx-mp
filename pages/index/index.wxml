@@ -4,7 +4,7 @@
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__hd">公告</view>
             <a wx:for="{{notices}}" wx:key="*this">
-                <navigator class="weui-panel__bd" url="/pages/trade/detail/detail?id={{item.id}}">
+                <navigator class="weui-panel__bd" url="/pages/notice/notice?id={{item.id}}">
                     <view class="weui-media-box weui-media-box_appmsg">
                         <view class="weui-media-box__hd">
                             <image class="weui-media-box__thumb" src="/image/notice.svg" />

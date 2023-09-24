@@ -1,3 +1,5 @@
+@import '/assets/iconfont.wxss';
+
 page {
     padding: 28rpx;
     -webkit-box-sizing: border-box;
@@ -5,23 +7,33 @@ page {
     box-sizing: border-box;
 }
 
-.h1 {
+.title {
     font-size: 48rpx;
     font-weight: 500;
     margin-bottom: 16px;
     display: block;
+    text-align: center;
 }
 
-.h2 {
+.info {
+    text-align: center;
+    display: block;
     font-size: 36rpx;
     font-weight: 500;
-    margin-bottom: 16px;
-    display: block;
+    display: flex;
+    justify-content: space-around;
 }
 
-.h3 {
-    font-size: 24rpx;
-    font-weight: 500;
-    margin-bottom: 16px;
+.content {
+    line-height: 1.65;
+    text-align: justify;
+    text-indent: 2em;
     display: block;
+    margin-top: 24rpx;
+    padding-top: 24rpx;
+    border-top: 1rpx solid #e5e5e5;
+}
+
+.iconfont {
+    margin-right: 8rpx;
 }
