@@ -11,7 +11,7 @@ const Card = {
     updateState(state, version) {
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${app.globalData.host}/api/card/update/current-state.do`,
+                url: `${Api.api}/api/card/update/current-state.do`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
                     Authorization: app.token(),
@@ -70,7 +70,7 @@ const Account = {
                 url: `${Api.api}/api/auth/one/current-account-info.do`,
                 header: {
                     'content-type': 'application/x-www-form-urlencoded',
-                    Authorization: getApp.token(),
+                    Authorization: app.token(),
                 },
                 timeout: 3000,
                 success: (res) => {
@@ -282,12 +282,35 @@ const Notice = {
     },
 };
 
+const Dept = {
+    chain() {
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${Api.api}/api/department/one/chain.do`,
+                header: { 'content-type': 'application/x-www-form-urlencoded' },
+                method: 'get',
+                success: (res) => {
+                    if (res.data.success) {
+                        resolve(res.data);
+                    } else {
+                        reject(res.data);
+                    }
+                },
+                fail: (res) => {
+                    reject(res);
+                },
+            });
+        });
+    },
+};
+
 module.exports = {
     Api,
     OSS,
     Card,
     Auth,
     Trade,
+    Dept,
     Notice,
     Account,
 };

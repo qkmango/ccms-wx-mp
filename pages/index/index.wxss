@@ -9,8 +9,11 @@ page {
 }
 
 .logo {
-    text-align: center;
     height: 200rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
 .weui-panel__hd {
@@ -18,4 +21,8 @@ page {
 }
 .weui-panel {
     background-color: transparent;
+}
+
+.weui-media-box {
+    padding: 16rpx 32rpx;
 }

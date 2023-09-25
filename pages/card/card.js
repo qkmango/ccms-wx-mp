@@ -18,7 +18,6 @@ Page({
         this.setData({
             card: getApp().card(),
         });
-        console.log(this.data.card);
     },
 
     /**

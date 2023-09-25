@@ -1,7 +1,6 @@
+import { Dept } from '../../utils/api.js';
+
 Page({
-    /**
-     * 页面的初始数据
-     */
     data: {
         departmentChain: [],
         computed: {
@@ -22,21 +21,12 @@ Page({
 
         //获取部门链
         let department = account.department;
-        wx.request({
-            url: `${getApp().globalData.host}/api/department/one/chain.do`,
-            header: { 'content-type': 'application/x-www-form-urlencoded' },
-            method: 'get',
-            data: {
-                id: department,
-            },
-            success: (res) => {
-                if (res.data.success) {
-                    _this.setData({
-                        departmentChain: res.data.data,
-                    });
-                    _this.computed();
-                }
-            },
+
+        Dept.chain().then((res) => {
+            _this.setData({
+                departmentChain: res.data,
+            });
+            _this.computed();
         });
     },
 
@@ -44,7 +34,7 @@ Page({
         let departmentChain = this.data.departmentChain;
         let chain = departmentChain.map((item) => item.name).join(' > ');
         this.setData({
-            "computed.departmentChain": chain,
+            'computed.departmentChain': chain,
         });
     },
 });
