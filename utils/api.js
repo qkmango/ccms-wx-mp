@@ -1,6 +1,6 @@
 const Api = {
-    api: 'http://192.168.0.2',
-    oss: 'http://192.168.0.100:9000',
+    api: 'http://localhost',
+    oss: 'http://localhost:9000',
 };
 
 const app = getApp();
