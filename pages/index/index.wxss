@@ -26,3 +26,18 @@ page {
 .weui-media-box {
     padding: 16rpx 32rpx;
 }
+
+.iconfont {
+    margin-right: 16rpx;
+}
+
+
+.weui-media-box__title {
+    display: inline-block;
+}
+
+.datetime {
+    float: right;
+    /* font-size: 28rpx; */
+    color: var(--weui-FG-2);
+}

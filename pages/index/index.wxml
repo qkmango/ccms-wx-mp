@@ -1,28 +1,25 @@
 <view class="page">
+    <!-- logo -->
     <image class="logo" src='/image/logo.svg' />
     <view class="page__bd">
         <view class="weui-panel weui-panel_access">
-            <view class="weui-panel__hd">公告</view>
-            <a wx:for="{{notices}}" wx:key="*this">
-                <navigator class="weui-panel__bd" url="/pages/notice/notice?id={{item.id}}">
-                    <view class="weui-media-box weui-media-box_appmsg">
-                        <view class="weui-media-box__hd">
-                            <image class="weui-media-box__thumb" src="/image/notice.svg" />
-                            {{this.title}}
-                        </view>
-                        <view class="weui-media-box__bd">
-                            <text class="weui-media-box__title">{{item.title}}</text>
-                            <view class="weui-media-box__desc">{{item.content}}</view>
-                        </view>
-                    </view>
-                </navigator>
-            </a>
-            <view class="weui-panel__ft">
-                <view class="weui-cell weui-cell_active weui-cell_access weui-cell_link">
-                    <view class="weui-cell__bd">查看更多</view>
-                    <view class="weui-cell__ft"></view>
-                </view>
-            </view>
+            <view class="weui-panel__hd"><text class="iconfont icon-xiaoxizhongxin"></text>公告</view>
+
+            <!-- 轮播 -->
+            <swiper class="notice-swiper" autoplay="{{true}}" interval="{{3000}}" duration="{{500}}">
+                <block wx:for="{{notices}}" wx:key="*this">
+                    <swiper-item>
+                        <navigator class="weui-panel__bd" url="/pages/notice/notice?id={{item.id}}">
+                            <view class="weui-media-box weui-media-box_appmsg">
+                                <view class="weui-media-box__bd">
+                                    <text class="weui-media-box__title">{{item.title}}</text>
+                                    <text class="weui-media-box__title datetime">{{item.createTime}}</text>
+                                </view>
+                            </view>
+                        </navigator>
+                    </swiper-item>
+                </block>
+            </swiper>
         </view>
     </view>
 </view>
